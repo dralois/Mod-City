@@ -20,16 +20,19 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadLevelByIndex(int levelIndex)
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(levelIndex);
     }
 
     public void LoadLevelByName(string levelName)
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(levelName);
     }
 
+    public void LoadLevelByNameAndSave(string levelName)
+    {
+        // do stuff here
+        SceneManager.LoadScene(levelName);
+    }
     public void CloseGame()
     {
         Application.Quit();
