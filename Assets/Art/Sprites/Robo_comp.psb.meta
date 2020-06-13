@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 791206e79d3f06948880648b39bfc9e9
+=======
+guid: 5fbf4f763050cf444977797f7ed9182d
+>>>>>>> turret
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -98,6 +102,7 @@ ScriptedImporter:
       y: 4
       width: 268
       height: 437
+<<<<<<< HEAD
     spriteID: 44758b91920679d4d9d72e447cc94e07
     internalID: 0
     spriteBone:
@@ -494,6 +499,16 @@ ScriptedImporter:
     - {x: 31, y: 30}
     - {x: 32, y: 31}
     - {x: 0, y: 32}
+=======
+    spriteID: f0cbad2719fcfb7449d4ea7008a0c96b
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+>>>>>>> turret
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -2, y: -44}
@@ -508,6 +523,7 @@ ScriptedImporter:
       y: 4
       width: 591
       height: 855
+<<<<<<< HEAD
     spriteID: 672dd2b5b8881e546a4cf0d9a352ec3e
     internalID: 0
     spriteBone:
@@ -1069,6 +1085,16 @@ ScriptedImporter:
     - {x: 0, y: 45}
     - {x: 33, y: 47}
     - {x: 30, y: 48}
+=======
+    spriteID: 333c273595eeefd44a9e5de2d9dc5d15
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+>>>>>>> turret
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: -235, y: -146}
@@ -1083,6 +1109,7 @@ ScriptedImporter:
       y: 449
       width: 269
       height: 433
+<<<<<<< HEAD
     spriteID: ba001e487eac0e641871fe04438517cd
     internalID: 0
     spriteBone:
@@ -1509,6 +1536,16 @@ ScriptedImporter:
     - {x: 31, y: 30}
     - {x: 32, y: 31}
     - {x: 0, y: 32}
+=======
+    spriteID: 632a11cf824f1de4b84f03dfdc118a15
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+>>>>>>> turret
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 364, y: 378}
@@ -1535,20 +1572,29 @@ ScriptedImporter:
     spriteName: Rad_Vorne
     isGroup: 0
     parentIndex: -1
+<<<<<<< HEAD
     spriteID: 44758b91920679d4d9d72e447cc94e07
+=======
+    spriteID: f0cbad2719fcfb7449d4ea7008a0c96b
+>>>>>>> turret
     layerID: 9
     mosaicPosition: {x: 603, y: 4}
   - name: Body
     spriteName: Body
     isGroup: 0
     parentIndex: -1
+<<<<<<< HEAD
     spriteID: 672dd2b5b8881e546a4cf0d9a352ec3e
+=======
+    spriteID: 333c273595eeefd44a9e5de2d9dc5d15
+>>>>>>> turret
     layerID: 22
     mosaicPosition: {x: 4, y: 4}
   - name: Rad_hinten
     spriteName: Rad_hinten
     isGroup: 0
     parentIndex: -1
+<<<<<<< HEAD
     spriteID: ba001e487eac0e641871fe04438517cd
     layerID: 16
     mosaicPosition: {x: 603, y: 449}
@@ -1607,6 +1653,14 @@ ScriptedImporter:
       bones: 02000000
       parentGroup: 0
       order: 0
+=======
+    spriteID: 632a11cf824f1de4b84f03dfdc118a15
+    layerID: 16
+    mosaicPosition: {x: 603, y: 449}
+  characterData:
+    bones: []
+    parts: []
+>>>>>>> turret
     dimension: {x: 0, y: 0}
     characterGroups: []
   generateGOHierarchy: 0
