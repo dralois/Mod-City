@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2770028004815992194}
   - component: {fileID: 2770028004815992192}
   - component: {fileID: 2770028004815992195}
+  - component: {fileID: 861979656}
   m_Layer: 0
   m_Name: crateS
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2770028004815992204}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -729.29, y: -259.53, z: 59.3125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -135,3 +136,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &861979656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2770028004815992204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.4612999, y: -0.4871, z: 0}
+  - {x: 0.45807457, y: -0.4967749, z: 0}
+  - {x: 0.47314453, y: 0.29504037, z: 0}
+  - {x: 0.50263023, y: 0.31273222, z: 0}
+  - {x: 0.5014734, y: 0.45429623, z: 0}
+  - {x: 0.4495554, y: 0.5029185, z: 0}
+  - {x: -0.42305946, y: 0.50469935, z: 0}
+  - {x: -0.50296307, y: 0.43199897, z: 0}
+  - {x: -0.49400425, y: 0.31125784, z: 0}
+  - {x: -0.46451855, y: 0.29504037, z: 0}
+  m_ShapePathHash: 1602548661
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -70258
