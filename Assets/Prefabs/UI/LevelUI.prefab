@@ -331,6 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b11a0fa55e9cd341980c2e67fb7b143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mods:
+  - {fileID: 11400000, guid: 01cad906454f34045bfc0d0c420ec8fb, type: 2}
   timepause: 1
   canvas: {fileID: 8102805284807290642}
 --- !u!1 &8102805284752037355
