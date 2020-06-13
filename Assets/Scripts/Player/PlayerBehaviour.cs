@@ -24,6 +24,11 @@ public class PlayerBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        ResetToSave();
+    }
+
     void Update()
     {
         // Move
@@ -34,6 +39,9 @@ public class PlayerBehaviour : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpImpuls);
         }
+
+        if (transform.position.y < -10)
+            ResetToSave();
     }
 
     void Shoot(InputAction.CallbackContext cc)
@@ -56,6 +64,25 @@ public class PlayerBehaviour : MonoBehaviour
     bool OnGround()
     {
         return rb.velocity.y == 0f;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+            ResetToSave();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.otherCollider.CompareTag("Enemy"))
+            ResetToSave();
+    }
+
+    public void ResetToSave()
+    {
+        rb.position = SavepointManager.Instance.lastSave.transform.position;
+        rb.velocity = Vector2.zero;
+        SavepointManager.Instance.OnReset();
     }
 
     private void OnEnable()
