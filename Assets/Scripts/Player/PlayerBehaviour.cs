@@ -85,12 +85,12 @@ public class PlayerBehaviour : MonoBehaviour
     void Move(InputAction.CallbackContext cc)
     {
         movement = cc.ReadValue<float>();
-        if (movement == 1 && !isTurnedRight)
+        if (movement > 0.1F && !isTurnedRight)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             Turn();
         }
-        if (movement == -1 && isTurnedRight)
+        if (movement < -0.1F && isTurnedRight)
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             Turn();

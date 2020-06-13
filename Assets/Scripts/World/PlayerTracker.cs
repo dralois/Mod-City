@@ -7,16 +7,17 @@ using UnityEngine;
 public class PlayerTracker : MonoBehaviour
 {
     public bool drawRaysGizmos = true;
-    public int numberOfRays = 5;
+    public int numberOfRays = 5;   
     
-    
-    private const float fireRayPeriod = 0.3f;
-    private Collider2D playerCollider;
+    private const float fireRayPeriod = 0.5f;
+    public Collider2D playerCollider;
 
     private IEnumerator fireRaysCoroutine;
 
     private float viewDistance = 0;
-    private bool playerIsVisible = false;
+    public bool playerIsVisible = false;
+
+    public TurretController controller;
 
     public void setViewDistance(float vd)
     {
@@ -32,18 +33,16 @@ public class PlayerTracker : MonoBehaviour
             fireRaysCoroutine = fireRays(fireRayPeriod);
             StartCoroutine(fireRaysCoroutine);
         }
-        Debug.Log("tr enter");
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            playerIsVisible = false;
             playerCollider = null;
             StopCoroutine(fireRaysCoroutine);
-            //other.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
         }
-        Debug.Log("tr exit");
     }
 
 
@@ -51,27 +50,19 @@ public class PlayerTracker : MonoBehaviour
     {
         if (playerIsVisible)
         {
-            //TODO turn gun to player
-
             Debug.DrawLine(this.transform.position, playerCollider.gameObject.transform.position, Color.red);
         }
     }
 
     private void CheckVision()
-    {
-        
+    {    
         if (playerCollider != null)
         { 
-            //start turning to player
-            //TODO
             Vector3 playerPos = playerCollider.gameObject.transform.position;
             
             RaycastHit2D hit;
             if (FireRaycast(playerCollider.gameObject, numberOfRays, out hit))
-            {
-                Debug.Log("player in direct view");
-                
-            }
+                controller.shootOnce();
         }     
         
     }
@@ -81,7 +72,7 @@ public class PlayerTracker : MonoBehaviour
         
         for (int i = 0; i < raysCount; i++) {
          
-            Bounds bounds = target.GetComponent<SpriteRenderer>().bounds;
+            Bounds bounds = target.GetComponent<Collider2D>().bounds;
             float y = bounds.extents.y;
             float x = bounds.extents.x;
 
