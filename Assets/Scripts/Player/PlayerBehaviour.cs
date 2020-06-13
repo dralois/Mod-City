@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
     private bool jumping;
     private float movement;
     private bool shooting;
+    private ParticleSystem dirt;
 
     [SerializeField]
     private float speed;
@@ -19,12 +20,14 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject bulletPrefab;
     private bool flip = true;
+    private bool prevOnGround = false;
 
     void Awake()
     {
         inputHandler = new InputHandler();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        dirt = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Start()
@@ -36,6 +39,16 @@ public class PlayerBehaviour : MonoBehaviour
     {
         anim.SetFloat("Movement", Mathf.Max(0.05F, Mathf.Abs(movement * speed)));
         anim.SetBool("Air", !OnGround());
+
+        if (prevOnGround != OnGround())
+        {
+            prevOnGround = !prevOnGround;
+            if (!prevOnGround)
+                dirt.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+            else
+                dirt.Play();
+            dirt.Emit(10);
+        }
 
         if (Mathf.Abs(movement) > 0.1F && movement > 0 != flip)
         {
@@ -51,6 +64,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpImpuls);
             anim.SetTrigger("Jump");
+            dirt.Emit(10);
         }
 
         if (transform.position.y < -10)
