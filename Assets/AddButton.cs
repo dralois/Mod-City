@@ -13,8 +13,10 @@ public class AddButton : MonoBehaviour
 
     private IModObject item;
     private ModScrollList scrollList;
+
     void Start()
     {
+        button.onClick.AddListener(HandleClick);
     }
 
     public void Setup(IModObject currentMod, ModScrollList currentScrollList)
@@ -26,11 +28,16 @@ public class AddButton : MonoBehaviour
         icon.sprite = item.Icon;
         scrollList = currentScrollList;
     }
-    
-    public void ActivateMod()
-    {
-        item.ModEnable();
 
-        // Debug.Log("activate Mod");
+    public void HandleClick()
+    {
+        if (scrollList.isActiveList && item.ModDisable())
+        {
+            scrollList.TryTransferMod(item);
+        }
+        else if (!scrollList.isActiveList && item.ModEnable())
+        {
+            scrollList.TryTransferMod(item);
+        }
     }
 }
