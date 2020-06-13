@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: end_blue_pipe_tile_flip
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 2734c20c94a5a95488195987d9f21cfa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce6242e254ea31f4796a918284e9bc33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

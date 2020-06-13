@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: angled_pipes3_tile
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 77609608b1efc994b95cb24fde81f43c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ed4df7d75bf2e2e4b93447c79cc20f74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

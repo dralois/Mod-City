@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: gound_tile_2
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: fd1d88677034f86488960f5c072295e8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dc14919380302f14f8c797eb2340baed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
