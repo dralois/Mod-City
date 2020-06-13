@@ -41,14 +41,6 @@ public class @InputHandler : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""ab2fb428-305f-4d2e-97c3-c68377dc82cb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -150,10 +142,26 @@ public class @InputHandler : IInputActionCollection, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""Level"",
+            ""id"": ""8d791465-64b4-4d26-9ad5-13713966f016"",
+            ""actions"": [
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""c79f6493-9557-459d-91b7-83d691f471eb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""d4e92ee6-3a7d-4462-b45a-0d690f79d660"",
+                    ""id"": ""a1bb9acc-253b-47f8-8d44-45bd1ebe30ec"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -184,7 +192,9 @@ public class @InputHandler : IInputActionCollection, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
-        m_Player_Cancel = m_Player.FindAction("Cancel", throwIfNotFound: true);
+        // Level
+        m_Level = asset.FindActionMap("Level", throwIfNotFound: true);
+        m_Level_Cancel = m_Level.FindAction("Cancel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -237,7 +247,6 @@ public class @InputHandler : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Shoot;
-    private readonly InputAction m_Player_Cancel;
     public struct PlayerActions
     {
         private @InputHandler m_Wrapper;
@@ -245,7 +254,6 @@ public class @InputHandler : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
-        public InputAction @Cancel => m_Wrapper.m_Player_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -264,9 +272,6 @@ public class @InputHandler : IInputActionCollection, IDisposable
                 @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
-                @Cancel.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -280,13 +285,43 @@ public class @InputHandler : IInputActionCollection, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+            }
+        }
+    }
+    public PlayerActions @Player => new PlayerActions(this);
+
+    // Level
+    private readonly InputActionMap m_Level;
+    private ILevelActions m_LevelActionsCallbackInterface;
+    private readonly InputAction m_Level_Cancel;
+    public struct LevelActions
+    {
+        private @InputHandler m_Wrapper;
+        public LevelActions(@InputHandler wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cancel => m_Wrapper.m_Level_Cancel;
+        public InputActionMap Get() { return m_Wrapper.m_Level; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LevelActions set) { return set.Get(); }
+        public void SetCallbacks(ILevelActions instance)
+        {
+            if (m_Wrapper.m_LevelActionsCallbackInterface != null)
+            {
+                @Cancel.started -= m_Wrapper.m_LevelActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_LevelActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_LevelActionsCallbackInterface.OnCancel;
+            }
+            m_Wrapper.m_LevelActionsCallbackInterface = instance;
+            if (instance != null)
+            {
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
             }
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
+    public LevelActions @Level => new LevelActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -301,6 +336,9 @@ public class @InputHandler : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+    }
+    public interface ILevelActions
+    {
         void OnCancel(InputAction.CallbackContext context);
     }
 }
