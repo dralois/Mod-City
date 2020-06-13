@@ -136,7 +136,7 @@ public class @InputHandler : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""84834cb5-2935-456c-a3be-77c9482b05c9"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Shoot"",

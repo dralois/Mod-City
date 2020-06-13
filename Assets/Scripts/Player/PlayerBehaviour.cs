@@ -39,13 +39,13 @@ public class PlayerBehaviour : MonoBehaviour
     void Shoot(InputAction.CallbackContext cc)
     {
         // Single shoots
-        Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Debug.Log("Shoot");
+        //Instantiate(bulletPrefab, transform.position, transform.rotation);
     }
 
     void Move(InputAction.CallbackContext cc)
     {
         movement = cc.ReadValue<float>();
-        Debug.Log(movement);
     }
 
     void Jump(InputAction.CallbackContext cc)
