@@ -651,8 +651,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mods:
   - {fileID: 11400000, guid: 8b373ae8133b56f469dca295e194220a, type: 2}
-  - {fileID: 11400000, guid: 7bba89bda3da4934b9b178699f569a75, type: 2}
   - {fileID: 11400000, guid: a0bc9a33e881637499e515a5e312be1a, type: 2}
+  - {fileID: 11400000, guid: 7bba89bda3da4934b9b178699f569a75, type: 2}
 --- !u!1 &641915410
 GameObject:
   m_ObjectHideFlags: 0

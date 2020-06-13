@@ -9,8 +9,7 @@ public abstract class IModable : MonoBehaviour
 	{
 		foreach (var mod in _mods)
 		{
-			ModHandler.Instance.TryLoadMod(mod);
-			Debug.Log($"Loaded mods for {this}", this);
+			mod.ModSetup(this);
 		}
 	}
 
@@ -18,8 +17,7 @@ public abstract class IModable : MonoBehaviour
 	{
 		foreach (var mod in _mods)
 		{
-			ModHandler.Instance.TryUnloadMod(mod);
-			Debug.Log($"Unloaded mods for {this}", this);
+			mod.ModDisable();
 		}
 	}
 

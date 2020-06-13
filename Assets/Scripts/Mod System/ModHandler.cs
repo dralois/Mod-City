@@ -9,12 +9,28 @@ public class ModHandler : Singleton<ModHandler>
 
 	public bool TryLoadMod(IModObject toAdd)
 	{
-		return _loadedMods.Add(toAdd);
+		if (_loadedMods.Add(toAdd))
+		{
+			toAdd.IsLoaded = true;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	public bool TryUnloadMod(IModObject toRemove)
 	{
-		return _loadedMods.Remove(toRemove);
+		if(_loadedMods.Remove(toRemove))
+		{
+			toRemove.IsLoaded = false;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	public bool TryEnableMod(IModObject toActivate)
@@ -35,8 +51,15 @@ public class ModHandler : Singleton<ModHandler>
 
 	public bool TryDisableMod(IModObject toDisable)
 	{
-		toDisable.IsActivated = false;
-		return _activeMods.Remove(toDisable);
+		if (_activeMods.Remove(toDisable))
+		{
+			toDisable.IsActivated = false;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	public bool CheckAllModsActive(IModObject[] toCheck)

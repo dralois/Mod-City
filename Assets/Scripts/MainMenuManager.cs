@@ -9,13 +9,17 @@ public class MainMenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void AddModUI()
+    {
+
     }
 
     public void LoadLevelByIndex(int levelIndex)
@@ -31,6 +35,7 @@ public class MainMenuManager : MonoBehaviour
     public void LoadLevelByNameAndSave(string levelName)
     {
         // do stuff here
+
         SceneManager.LoadScene(levelName);
     }
     public void CloseGame()
