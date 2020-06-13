@@ -46,17 +46,6 @@ public class @InputHandler : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""84834cb5-2935-456c-a3be-77c9482b05c9"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press(behavior=2)"",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a34b656b-8ed9-4f0e-9605-add8c6f27918"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": ""Press(behavior=2)"",
@@ -67,7 +56,18 @@ public class @InputHandler : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Horizontal"",
+                    ""name"": """",
+                    ""id"": ""eb80714f-f650-4c3b-88a3-42ef29d5401e"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrows"",
                     ""id"": ""cb74f129-01cc-4e08-98f4-bcffaaf84d68"",
                     ""path"": ""1DAxis"",
                     ""interactions"": ""Press(behavior=2)"",
@@ -100,9 +100,42 @@ public class @InputHandler : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""WASD"",
+                    ""id"": ""049a5096-2415-45bb-bf03-793a919ca7fd"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a04a98bd-af6e-44e5-b004-42f8601e633e"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""11348b63-fafb-41bd-a42e-6ed08a1ceb76"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
-                    ""id"": ""0fb7265b-47ac-4092-9217-ff0a871164a2"",
-                    ""path"": """",
+                    ""id"": ""84834cb5-2935-456c-a3be-77c9482b05c9"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
