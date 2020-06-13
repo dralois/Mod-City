@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Savepoint : MonoBehaviour
 {
-    public SpriteRenderer sprite;
+    public Animator anim;
+    public ParticleSystem sys;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

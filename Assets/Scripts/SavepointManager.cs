@@ -10,13 +10,18 @@ public class SavepointManager : Singleton<SavepointManager>
     private void Start()
     {
         lastSave = inital;
+        lastSave.anim.SetBool("active", true);
+        lastSave.sys.Play();
+
         DontDestroyOnLoad(this);
     }
 
     public void Save(Savepoint s)
     {
-        lastSave.sprite.color = Color.green;
-        s.sprite.color = Color.white;
+        lastSave.anim.SetBool("active", false);
+        lastSave.sys.Stop();
+        s.anim.SetBool("active", true);
+        s.sys.Play();
         lastSave = s;
     }
 
