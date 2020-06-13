@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public abstract class IModObject : ScriptableObject
@@ -20,6 +19,7 @@ public abstract class IModObject : ScriptableObject
 	public IModObject[] Dependencies { get => _dependencies; }
 	public IModObject[] Incompatibles { get => _incompatibles; }
 
+	public bool IsLoaded { get; set; } = false;
 	public bool IsActivated { get; set; } = false;
 	public IModable Modable { get; private set; }
 
@@ -29,15 +29,27 @@ public abstract class IModObject : ScriptableObject
 
 	protected abstract void DisableInternal();
 
-	public void ModEnable()
+	public bool ModLoad()
 	{
-		if (ModHandler.Instance.TryEnableMod(this))
+		return ModHandler.Instance.TryLoadMod(this);
+	}
+
+	public bool ModUnload()
+	{
+		return ModHandler.Instance.TryUnloadMod(this);
+	}
+
+	public bool ModEnable()
+	{
+		if (IsLoaded && !IsActivated && ModHandler.Instance.TryEnableMod(this))
 		{
 			EnableInternal();
+			return true;
 		}
 		else
 		{
 			Debug.Log($"Couldnt enable mod {this} for {Modable}", this);
+			return false;
 		}
 	}
 
@@ -49,22 +61,24 @@ public abstract class IModObject : ScriptableObject
 
 	public void ModUpdate()
 	{
-		if (IsActivated)
+		if (IsLoaded && IsActivated)
 		{
 			UpdateInternal();
 		}
 	}
 
-	public void ModDisable()
+	public bool ModDisable()
 	{
-		if (ModHandler.Instance.TryDisableMod(this))
+		if (IsLoaded && IsActivated && ModHandler.Instance.TryDisableMod(this))
 		{
 			DisableInternal();
 			Modable = null;
+			return true;
 		}
 		else
 		{
 			Debug.Log($"Couldnt disable mod {this} for {Modable}", this);
+			return false;
 		}
 	}
 }

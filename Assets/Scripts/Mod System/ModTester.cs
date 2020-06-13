@@ -6,8 +6,9 @@ public class ModTester : IModable
 	{
 		foreach (var mod in _mods)
 		{
-			mod.ModEnable();
+			mod.ModLoad();
 			mod.ModSetup(this);
+			mod.ModEnable();
 		}
 	}
 }
