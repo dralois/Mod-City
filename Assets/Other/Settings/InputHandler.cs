@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Player/InputHandler.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Other/Settings/InputHandler.inputactions'
 
 using System;
 using System.Collections;
@@ -28,9 +28,9 @@ public class @InputHandler : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""6e503794-2d46-4c11-9ed4-3d59e1659338"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -48,7 +48,18 @@ public class @InputHandler : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""84834cb5-2935-456c-a3be-77c9482b05c9"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a34b656b-8ed9-4f0e-9605-add8c6f27918"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Jump"",
@@ -59,7 +70,7 @@ public class @InputHandler : IInputActionCollection, IDisposable
                     ""name"": ""Horizontal"",
                     ""id"": ""cb74f129-01cc-4e08-98f4-bcffaaf84d68"",
                     ""path"": ""1DAxis"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
