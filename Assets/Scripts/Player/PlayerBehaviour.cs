@@ -9,11 +9,14 @@ public class PlayerBehaviour : MonoBehaviour
     private Rigidbody2D rb;
     private bool jumping;
     private float movement;
+    private bool shooting;
 
     [SerializeField]
     private float speed;
     [SerializeField]
     private float jumpImpuls;
+    [SerializeField]
+    private GameObject bulletPrefab;
 
     void Awake()
     {
@@ -31,6 +34,12 @@ public class PlayerBehaviour : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpImpuls);
         }
+    }
+
+    void Shoot(InputAction.CallbackContext cc)
+    {
+        // Single shoots
+        Instantiate(bulletPrefab, transform.position, transform.rotation);
     }
 
     void Move(InputAction.CallbackContext cc)
@@ -56,6 +65,9 @@ public class PlayerBehaviour : MonoBehaviour
 
         inputHandler.Player.Movement.performed += Move;
         inputHandler.Player.Movement.Enable();
+
+        inputHandler.Player.Shoot.performed += Shoot;
+        inputHandler.Player.Shoot.Enable();
     }
 
     private void OnDisable()
@@ -65,5 +77,8 @@ public class PlayerBehaviour : MonoBehaviour
 
         inputHandler.Player.Movement.performed -= Move;
         inputHandler.Player.Movement.Disable();
+
+        inputHandler.Player.Shoot.performed -= Shoot;
+        inputHandler.Player.Shoot.Disable();
     }
 }
