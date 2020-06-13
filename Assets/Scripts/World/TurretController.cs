@@ -120,9 +120,5 @@ public class TurretController : MonoBehaviour
         
         GameObject tmpProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.transform.position, Quaternion.LookRotation(gunLine, Vector3.up));
         tmpProjectile.GetComponent<Projectile>().init(gunLine, projectileSpeed);
-    }
-    
-    
-    
-    
+    } 
 }
