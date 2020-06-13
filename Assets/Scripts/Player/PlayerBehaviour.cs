@@ -11,6 +11,7 @@ public class PlayerBehaviour : MonoBehaviour
     private bool jumping;
     private float movement;
     private bool shooting;
+    private bool isTurnedRight;
     private ParticleSystem dirt;
 
     [SerializeField]
@@ -19,13 +20,17 @@ public class PlayerBehaviour : MonoBehaviour
     private float jumpImpuls;
     [SerializeField]
     private GameObject bulletPrefab;
-    private bool flip = true;
+    [SerializeField]
+    private Vector3 bulletOffset;
+    
     private bool prevOnGround = false;
-
+    
     void Awake()
     {
         inputHandler = new InputHandler();
         rb = GetComponent<Rigidbody2D>();
+
+        isTurnedRight = true;
         anim = GetComponent<Animator>();
         dirt = GetComponentInChildren<ParticleSystem>();
     }
@@ -49,13 +54,7 @@ public class PlayerBehaviour : MonoBehaviour
                 dirt.Play();
             dirt.Emit(10);
         }
-
-        if (Mathf.Abs(movement) > 0.1F && movement > 0 != flip)
-        {
-            flip = !flip;
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        }
-
+        
         // Move
         transform.position = new Vector3(transform.position.x + movement * speed * Time.deltaTime, transform.position.y, 0);
         
@@ -74,13 +73,28 @@ public class PlayerBehaviour : MonoBehaviour
     void Shoot(InputAction.CallbackContext cc)
     {
         // Single shoots
-        Debug.Log("Shoot");
-        //Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Instantiate(bulletPrefab, transform.position + bulletOffset, transform.rotation);
+    }
+    
+    void Turn()
+    {
+        bulletOffset = new Vector3(-bulletOffset.x, bulletOffset.y, 0);
+        isTurnedRight = !isTurnedRight;
     }
 
     void Move(InputAction.CallbackContext cc)
     {
         movement = cc.ReadValue<float>();
+        if (movement == 1 && !isTurnedRight)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            Turn();
+        }
+        if (movement == -1 && isTurnedRight)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            Turn();
+        }
     }
 
     void Jump(InputAction.CallbackContext cc)
