@@ -5,9 +5,8 @@ using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-public class turretController : MonoBehaviour
+public class TurretController : MonoBehaviour
 {
-    public GameObject projectile;
     public float viewDistance = 7f;
     public float viewAngle = 30f;
     public float rotationSpeed = 2f;

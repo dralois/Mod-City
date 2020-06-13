@@ -529,7 +529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be4bc67bc32b2845b3a5b5f30628f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
+  projectile: {fileID: 4438289298600849014, guid: e61c53c36a921d54190696ea74a19364,
+    type: 3}
   viewDistance: 8
   viewAngle: 30
   rotationSpeed: 2
