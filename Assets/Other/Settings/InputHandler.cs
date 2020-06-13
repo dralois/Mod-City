@@ -103,7 +103,7 @@ public class @InputHandler : IInputActionCollection, IDisposable
                     ""name"": ""WASD"",
                     ""id"": ""049a5096-2415-45bb-bf03-793a919ca7fd"",
                     ""path"": ""1DAxis"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",

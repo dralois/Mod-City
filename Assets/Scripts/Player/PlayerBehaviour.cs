@@ -10,6 +10,7 @@ public class PlayerBehaviour : MonoBehaviour
     private bool jumping;
     private float movement;
     private bool shooting;
+    private bool isTurnedRight;
 
     [SerializeField]
     private float speed;
@@ -17,11 +18,15 @@ public class PlayerBehaviour : MonoBehaviour
     private float jumpImpuls;
     [SerializeField]
     private GameObject bulletPrefab;
-
+    [SerializeField]
+    private Vector3 bulletOffset;
+    
     void Awake()
     {
         inputHandler = new InputHandler();
         rb = GetComponent<Rigidbody2D>();
+
+        isTurnedRight = true;
     }
 
     void Update()
@@ -39,13 +44,28 @@ public class PlayerBehaviour : MonoBehaviour
     void Shoot(InputAction.CallbackContext cc)
     {
         // Single shoots
-        Debug.Log("Shoot");
-        //Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Instantiate(bulletPrefab, transform.position + bulletOffset, transform.rotation);
+    }
+    
+    void Turn()
+    {
+        bulletOffset = new Vector3(-bulletOffset.x, bulletOffset.y, 0);
+        isTurnedRight = !isTurnedRight;
     }
 
     void Move(InputAction.CallbackContext cc)
     {
         movement = cc.ReadValue<float>();
+        if (movement == 1 && !isTurnedRight)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            Turn();
+        }
+        if (movement == -1 && isTurnedRight)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            Turn();
+        }
     }
 
     void Jump(InputAction.CallbackContext cc)
