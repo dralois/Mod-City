@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e909eb333df2f147b6ee38a023eef40
+guid: 791206e79d3f06948880648b39bfc9e9
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -98,7 +98,7 @@ ScriptedImporter:
       y: 4
       width: 268
       height: 437
-    spriteID: 5fcda6963cada0841b66bd75210f3214
+    spriteID: 44758b91920679d4d9d72e447cc94e07
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -120,7 +120,7 @@ ScriptedImporter:
       y: 4
       width: 591
       height: 855
-    spriteID: 5591b57ae2ec8bc46b123fd331efa107
+    spriteID: 672dd2b5b8881e546a4cf0d9a352ec3e
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -142,7 +142,7 @@ ScriptedImporter:
       y: 449
       width: 269
       height: 433
-    spriteID: e032274fd1e0c5c40afdf5fb8fd35ff0
+    spriteID: ba001e487eac0e641871fe04438517cd
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -176,21 +176,21 @@ ScriptedImporter:
     spriteName: Rad_Vorne
     isGroup: 0
     parentIndex: -1
-    spriteID: 5fcda6963cada0841b66bd75210f3214
+    spriteID: 44758b91920679d4d9d72e447cc94e07
     layerID: 9
     mosaicPosition: {x: 603, y: 4}
   - name: Body
     spriteName: Body
     isGroup: 0
     parentIndex: -1
-    spriteID: 5591b57ae2ec8bc46b123fd331efa107
+    spriteID: 672dd2b5b8881e546a4cf0d9a352ec3e
     layerID: 22
     mosaicPosition: {x: 4, y: 4}
   - name: Rad_hinten
     spriteName: Rad_hinten
     isGroup: 0
     parentIndex: -1
-    spriteID: e032274fd1e0c5c40afdf5fb8fd35ff0
+    spriteID: ba001e487eac0e641871fe04438517cd
     layerID: 16
     mosaicPosition: {x: 603, y: 449}
   characterData:
