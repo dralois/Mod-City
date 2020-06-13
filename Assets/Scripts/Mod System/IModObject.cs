@@ -28,11 +28,11 @@ public abstract class IModObject : ScriptableObject
 	public bool IsActivated { get => _isActivated; set => _isActivated = value; }
 	public IModable Modable { get => _modable; set => _modable = value; }
 
-	protected abstract void EnableInternal();
-
+	protected abstract void AwakeInternal();
+	protected abstract void OnEnableInternal();
 	protected abstract void UpdateInternal();
-
-	protected abstract void DisableInternal();
+	protected abstract void OnDisableInternal();
+	protected abstract void DestroyInternal();
 
 	public bool ModLoad()
 	{
@@ -44,11 +44,10 @@ public abstract class IModObject : ScriptableObject
 		return ModHandler.Instance.TryUnloadMod(this);
 	}
 
-	public bool ModEnable()
+	public bool ModActivate()
 	{
 		if (IsLoaded && !IsActivated && ModHandler.Instance.TryEnableMod(this))
 		{
-			EnableInternal();
 			return true;
 		}
 		else
@@ -58,10 +57,35 @@ public abstract class IModObject : ScriptableObject
 		}
 	}
 
-	public void ModSetup(IModable myModable)
+	public bool ModDeactivate()
 	{
-		Modable = myModable;
-		Debug.Log($"Setup mod {this} for {Modable as ModTester}", this);
+		if (IsLoaded && IsActivated && ModHandler.Instance.TryDisableMod(this))
+		{
+			Modable = null;
+			return true;
+		}
+		else
+		{
+			Debug.Log($"Couldnt disable mod {this} for {Modable}", this);
+			return false;
+		}
+	}
+
+	public void ModAwake(IModable myModable)
+	{
+		if (IsLoaded && IsActivated)
+		{
+			Modable = myModable;
+			AwakeInternal();
+		}
+	}
+
+	public void ModOnEnable()
+	{
+		if (IsLoaded && IsActivated)
+		{
+			OnEnableInternal();
+		}
 	}
 
 	public void ModUpdate()
@@ -72,18 +96,20 @@ public abstract class IModObject : ScriptableObject
 		}
 	}
 
-	public bool ModDisable()
+	public void ModOnDisable()
 	{
-		if (IsLoaded && IsActivated && ModHandler.Instance.TryDisableMod(this))
+		if (IsLoaded && IsActivated)
 		{
-			DisableInternal();
-			Modable = null;
-			return true;
-		}
-		else
-		{
-			Debug.Log($"Couldnt disable mod {this} for {Modable}", this);
-			return false;
+			OnDisableInternal();
 		}
 	}
+
+	public void ModDestroy()
+	{
+		if (IsLoaded && IsActivated)
+		{
+			DestroyInternal();
+		}
+	}
+
 }
