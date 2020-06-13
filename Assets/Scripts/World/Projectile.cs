@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    
+    [SerializeField]
+    private float lifetime;
+
+    public GameObject hitPrefab;
 
     public void init(Vector3 direction, float speed)
     {
@@ -17,11 +20,19 @@ public class Projectile : MonoBehaviour
         this.GetComponent<Rigidbody2D>().AddForce(10*speed*direction);
     }
 
+    private void Update()
+    {
+        lifetime -= Time.deltaTime;
+        if (lifetime < 0)
+            Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Hurdle"))
+        if (other.CompareTag("Player") || other.CompareTag("Untagged"))
         {
-            Destroy(this.gameObject);
+            Instantiate(hitPrefab, gameObject.transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
