@@ -343,7 +343,7 @@ MonoBehaviour:
   speed: 5
   bulletPrefab: {fileID: 2348499282425956688, guid: a27739c9a86f5a542ac28fba60c34aec,
     type: 3}
-  bulletOffset: {x: 1, y: 2.5, z: 0}
+  bulletOffset: {x: 0.5, y: 0.7, z: 0}
 --- !u!1001 &4027697754660988932
 PrefabInstance:
   m_ObjectHideFlags: 0

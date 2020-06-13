@@ -24,8 +24,8 @@ public class PauseScreen : IModable
     protected override void Awake()
     {
         inputHandler = new InputHandler();
-        inputHandler.Player.Cancel.performed += Cancel_performed;
-        inputHandler.Player.Cancel.Enable();
+        inputHandler.Level.Cancel.performed += Cancel_performed;
+        inputHandler.Level.Cancel.Enable();
         canvas.SetActive(false);
         base.Awake();
     }
