@@ -14,7 +14,7 @@ public class Collectable : MonoBehaviour
     {
         orgScale = transform.localScale;
         orgPos = transform.position;
-        light2D = GetComponent<Light2D>();
+        light2D = GetComponentInChildren<Light2D>();
     }
 
     float collectTick = 0;
