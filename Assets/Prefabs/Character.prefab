@@ -339,6 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mods:
   - {fileID: 11400000, guid: 9b0601c91e30dfe4690611a37718baa2, type: 2}
+  - {fileID: 11400000, guid: ee95ce37ed187ae458b4c37e7a2479f2, type: 2}
   speed: 5
   bulletPrefab: {fileID: 2348499282425956688, guid: a27739c9a86f5a542ac28fba60c34aec,
     type: 3}

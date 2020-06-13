@@ -10,7 +10,7 @@ public class PlayerBehaviour : IModable
 	private bool prevOnGround = false;
 
 	[SerializeField]
-	private float speed;
+	public float speed;
 	[SerializeField]
 	private GameObject bulletPrefab;
 	[SerializeField]
