@@ -17,5 +17,6 @@ MonoBehaviour:
   _author: Hendrik
   _version: 2
   _requiresRestart: 1
-  _depdendencies: []
-  _incompatibles: []
+  _dependencies: []
+  _incompatibles:
+  - {fileID: 11400000, guid: a0bc9a33e881637499e515a5e312be1a, type: 2}

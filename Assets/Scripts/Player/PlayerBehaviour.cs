@@ -6,30 +6,64 @@ using UnityEngine.InputSystem;
 public class PlayerBehaviour : MonoBehaviour
 {
     private InputHandler inputHandler;
+    private Rigidbody2D rb;
+    private bool jumping;
+    private float movement;
+
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float jumpImpuls;
 
     void Awake()
     {
         inputHandler = new InputHandler();
-        inputHandler.Player.Jump.performed += _ => Jump();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Jump()
+    void Update()
     {
-        Debug.Log("Jump");
+        // Move
+        transform.position = new Vector3(transform.position.x + movement * speed * Time.deltaTime, transform.position.y, 0);
+        
+        // Jump
+        if (jumping && OnGround())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpImpuls);
+        }
+    }
+
+    void Move(InputAction.CallbackContext cc)
+    {
+        movement = cc.ReadValue<float>();
+        Debug.Log(movement);
+    }
+
+    void Jump(InputAction.CallbackContext cc)
+    {
+        jumping = !jumping;
     }
 
     bool OnGround()
     {
-        return false;
+        return rb.velocity.y == 0f;
     }
-    
+
     private void OnEnable()
     {
-        inputHandler.Enable();
+        inputHandler.Player.Jump.performed += Jump;
+        inputHandler.Player.Jump.Enable();
+
+        inputHandler.Player.Movement.performed += Move;
+        inputHandler.Player.Movement.Enable();
     }
 
     private void OnDisable()
     {
-        inputHandler.Disable();
+        inputHandler.Player.Jump.performed -= Jump;
+        inputHandler.Player.Jump.Disable();
+
+        inputHandler.Player.Movement.performed -= Move;
+        inputHandler.Player.Movement.Disable();
     }
 }
