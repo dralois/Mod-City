@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Collectable : MonoBehaviour
 {
     public float timeToCollect = 1;
     private Vector3 orgScale, orgPos;
     private Transform player;
+    private Light2D light2D;
 
     void Start()
     {
         orgScale = transform.localScale;
         orgPos = transform.position;
+        light2D = GetComponentInChildren<Light2D>();
     }
 
     float collectTick = 0;
@@ -23,6 +26,7 @@ public class Collectable : MonoBehaviour
             float t = collectTick;
             transform.position = Vector3.Lerp(player.position + Vector3.up * 0.5F, orgPos, t * t);
             transform.localScale = orgScale * t;
+            light2D.intensity = t;
             if (collectTick <= 0)
             {
                 OnCollected();
@@ -30,10 +34,7 @@ public class Collectable : MonoBehaviour
             }
         }
         else
-        {
-            transform.Rotate(Vector3.forward, Time.deltaTime * 180F);
             transform.position = orgPos + Vector3.up * Mathf.Cos(Time.time * 5) * 0.1F;
-        }
     }
 
     private void OnCollected()
