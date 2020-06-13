@@ -337,8 +337,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7cf125241b4f74c8afa1c39f9200bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mods:
+  - {fileID: 11400000, guid: 9b0601c91e30dfe4690611a37718baa2, type: 2}
   speed: 5
-  jumpImpuls: 5
   bulletPrefab: {fileID: 2348499282425956688, guid: a27739c9a86f5a542ac28fba60c34aec,
     type: 3}
   bulletOffset: {x: 0.5, y: 0.7, z: 0}

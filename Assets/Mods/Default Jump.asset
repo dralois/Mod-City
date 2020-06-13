@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6871371f7e970c49bdd153670e943a8, type: 3}
+  m_Name: Default Jump
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 479798621195244634, guid: e97dd7f66a194584f88dbd0cfeca7bb0, type: 3}
+  _name: Jumperion Ultra
+  _author: HendriX
+  _version: 2
+  _requiresRestart: 0
+  _dependencies: []
+  _incompatibles: []
+  jumpImpulse: 10
