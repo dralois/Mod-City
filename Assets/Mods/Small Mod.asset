@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07485b8530b8fb749ae4fd0797b0d3fb, type: 3}
   m_Name: Small Mod
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 1ed95b0894c083641b60fc03c2b59ef6, type: 3}
   _name: Micro Mod
   _author: Flixabua
   _version: 4
