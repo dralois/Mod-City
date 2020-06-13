@@ -521,10 +521,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 0
+    m_Top: 10
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: -60
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -561,6 +561,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a0bc9a33e881637499e515a5e312be1a, type: 2}
   - {fileID: 11400000, guid: 8b373ae8133b56f469dca295e194220a, type: 2}
   - {fileID: 11400000, guid: 7bba89bda3da4934b9b178699f569a75, type: 2}
+  - {fileID: 11400000, guid: 4c11cd2af3a7f0c4cabb8716e736b5dd, type: 2}
+  - {fileID: 11400000, guid: 40e06100a9e6c72499877024b2140c6c, type: 2}
+  - {fileID: 11400000, guid: 4ea7ff3e2e108074298f87fd8a062b70, type: 2}
+  - {fileID: 11400000, guid: 33db687f962da7c4f97686926ed090e3, type: 2}
+  - {fileID: 11400000, guid: 3a50af595ddaf324592a6aeba6d38e9e, type: 2}
   isActiveList: 1
   contentPanel: {fileID: 5017567646770881847}
   otherList: {fileID: 0}
@@ -695,7 +700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -199, y: 2.582161}
+  m_AnchoredPosition: {x: -199, y: 2.5821533}
   m_SizeDelta: {x: 335, y: -124.83568}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5017567647344050481
