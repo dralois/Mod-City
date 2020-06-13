@@ -27,16 +27,23 @@ public class AddButton : MonoBehaviour
         description.text = $"{item.Author} created a mod with the version {item.Version} but will it work?";
         icon.sprite = item.Icon;
         scrollList = currentScrollList;
+        if (scrollList.isActiveList)
+            button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "-";
+        else
+
+            button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+";
     }
 
     public void HandleClick()
     {
         if (scrollList.isActiveList && item.ModDisable())
         {
+            button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "-";
             scrollList.TryTransferMod(item);
         }
         else if (!scrollList.isActiveList && item.ModEnable())
         {
+            button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+";
             scrollList.TryTransferMod(item);
         }
     }
