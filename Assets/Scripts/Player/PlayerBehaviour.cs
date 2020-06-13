@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 public class PlayerBehaviour : MonoBehaviour
 {
     private InputHandler inputHandler;
+    private Animator anim;
     private Rigidbody2D rb;
     private bool jumping;
     private float movement;
     private bool shooting;
     private bool isTurnedRight;
+    private ParticleSystem dirt;
 
     [SerializeField]
     private float speed;
@@ -21,16 +23,38 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     private Vector3 bulletOffset;
     
+    private bool prevOnGround = false;
+    
     void Awake()
     {
         inputHandler = new InputHandler();
         rb = GetComponent<Rigidbody2D>();
 
         isTurnedRight = true;
+        anim = GetComponent<Animator>();
+        dirt = GetComponentInChildren<ParticleSystem>();
+    }
+
+    private void Start()
+    {
+        ResetToSave();
     }
 
     void Update()
     {
+        anim.SetFloat("Movement", Mathf.Max(0.05F, Mathf.Abs(movement * speed)));
+        anim.SetBool("Air", !OnGround());
+
+        if (prevOnGround != OnGround())
+        {
+            prevOnGround = !prevOnGround;
+            if (!prevOnGround)
+                dirt.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+            else
+                dirt.Play();
+            dirt.Emit(10);
+        }
+        
         // Move
         transform.position = new Vector3(transform.position.x + movement * speed * Time.deltaTime, transform.position.y, 0);
         
@@ -38,7 +62,12 @@ public class PlayerBehaviour : MonoBehaviour
         if (jumping && OnGround())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpImpuls);
+            anim.SetTrigger("Jump");
+            dirt.Emit(10);
         }
+
+        if (transform.position.y < -10)
+            ResetToSave();
     }
 
     void Shoot(InputAction.CallbackContext cc)
@@ -76,6 +105,25 @@ public class PlayerBehaviour : MonoBehaviour
     bool OnGround()
     {
         return rb.velocity.y == 0f;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+            ResetToSave();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.otherCollider.CompareTag("Enemy"))
+            ResetToSave();
+    }
+
+    public void ResetToSave()
+    {
+        rb.position = SavepointManager.Instance.lastSave.transform.position;
+        rb.velocity = Vector2.zero;
+        SavepointManager.Instance.OnReset();
     }
 
     private void OnEnable()

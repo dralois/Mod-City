@@ -21,8 +21,7 @@ public class Collectable : MonoBehaviour
         {
             collectTick -= Time.deltaTime / timeToCollect;
             float t = collectTick;
-            t = t * t;
-            transform.position = Vector3.Lerp(player.position, orgPos, t);
+            transform.position = Vector3.Lerp(player.position + Vector3.up * 0.5F, orgPos, t * t);
             transform.localScale = orgScale * t;
             if (collectTick <= 0)
             {
