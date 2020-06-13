@@ -6,16 +6,16 @@ public class Mod_Empty : IModObject
 {
 	protected override void EnableInternal()
 	{
-		Debug.Log($"Enabled mod {this} for {Modable as ModTester}", this);
+		Debug.Log($"Enabled mod {this}", this);
 	}
 
 	protected override void UpdateInternal()
 	{
-		Debug.Log($"Updateing mod {this} for {Modable as ModTester}", this);
+		Debug.Log($"Updating mod {this} for {Modable as ModTester}", this);
 	}
 
 	protected override void DisableInternal()
 	{
-		Debug.Log($"Disabled mod {this} for {Modable as ModTester}", this);
+		Debug.Log($"Disabled mod {this}", this);
 	}
 }

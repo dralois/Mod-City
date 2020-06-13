@@ -29,17 +29,22 @@ public abstract class IModObject : ScriptableObject
 
 	protected abstract void DisableInternal();
 
-	public void ModEnable(IModable myModable)
+	public void ModEnable()
 	{
 		if (ModHandler.Instance.TryEnableMod(this))
 		{
-			Modable = myModable;
 			EnableInternal();
 		}
 		else
 		{
 			Debug.Log($"Couldnt enable mod {this} for {Modable}", this);
 		}
+	}
+
+	public void ModSetup(IModable myModable)
+	{
+		Modable = myModable;
+		Debug.Log($"Setup mod {this} for {Modable as ModTester}", this);
 	}
 
 	public void ModUpdate()
