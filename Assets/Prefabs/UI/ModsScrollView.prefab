@@ -125,7 +125,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 313.67145, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3851222478903385097
 MonoBehaviour:
@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_HorizontalFit: 1
+  m_VerticalFit: 0
 --- !u!114 &7173310590392195806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +179,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modList:
+  - {fileID: 11400000, guid: a0bc9a33e881637499e515a5e312be1a, type: 2}
+  - {fileID: 11400000, guid: 8b373ae8133b56f469dca295e194220a, type: 2}
+  - {fileID: 11400000, guid: 7bba89bda3da4934b9b178699f569a75, type: 2}
+  - {fileID: 11400000, guid: a0bc9a33e881637499e515a5e312be1a, type: 2}
+  - {fileID: 11400000, guid: 8b373ae8133b56f469dca295e194220a, type: 2}
+  - {fileID: 11400000, guid: 7bba89bda3da4934b9b178699f569a75, type: 2}
   - {fileID: 11400000, guid: a0bc9a33e881637499e515a5e312be1a, type: 2}
   - {fileID: 11400000, guid: 8b373ae8133b56f469dca295e194220a, type: 2}
   - {fileID: 11400000, guid: 7bba89bda3da4934b9b178699f569a75, type: 2}
@@ -436,8 +442,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1368470704998649085}
-  m_Horizontal: 1
-  m_Vertical: 0
+  m_Horizontal: 0
+  m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
@@ -646,7 +652,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1368470706725701284}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9968127
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
