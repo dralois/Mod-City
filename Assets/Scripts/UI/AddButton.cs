@@ -9,6 +9,7 @@ public class AddButton : MonoBehaviour
     public Button button;
     public TMPro.TextMeshProUGUI title;
     public TMPro.TextMeshProUGUI description;
+    public TMPro.TextMeshProUGUI version;
     public Image icon;
 
     private IModObject item;
@@ -24,7 +25,8 @@ public class AddButton : MonoBehaviour
         item = currentMod;
         item.ModLoad();
         title.text = item.Name;
-        description.text = $"{item.Author} created a mod with the version {item.Version} but will it work?";
+        description.text = $"{item.Author} created a mod, but will it work?";
+        version.text = $"Version: {item.Version.ToString()}";
         icon.sprite = item.Icon;
         scrollList = currentScrollList;
         if (scrollList.isActiveList)

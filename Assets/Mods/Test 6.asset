@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbbde8b0c9ef1264f9e485dd2b0653c9, type: 3}
-  m_Name: Test 3
+  m_Name: Test 6
   m_EditorClassIdentifier: 
-  _icon: {fileID: -3041710115830632164, guid: da0e1b0bc6f444f4cb5e1568f30ed0d8, type: 3}
-  _name: Test Mod 3
-  _author: Hendrik
-  _version: 3
-  _requiresRestart: 1
-  _dependencies:
-  - {fileID: 11400000, guid: 8b373ae8133b56f469dca295e194220a, type: 2}
+  _icon: {fileID: 0}
+  _name: Lates Tangoverleih
+  _author: Late
+  _version: 0
+  _requiresRestart: 0
+  _dependencies: []
   _incompatibles: []
