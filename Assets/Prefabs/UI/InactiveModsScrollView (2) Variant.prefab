@@ -82,6 +82,16 @@ PrefabInstance:
       propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5017567646373941949, guid: 2d88daddeefc37048bb375a3cd6e320a,
+        type: 3}
+      propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017567646770881847, guid: 2d88daddeefc37048bb375a3cd6e320a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5017567647046183034, guid: 2d88daddeefc37048bb375a3cd6e320a,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -160,22 +170,22 @@ PrefabInstance:
     - target: {fileID: 5017567647344050482, guid: 2d88daddeefc37048bb375a3cd6e320a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 199
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5017567647344050482, guid: 2d88daddeefc37048bb375a3cd6e320a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.566101
+      value: -3.933899
       objectReference: {fileID: 0}
     - target: {fileID: 5017567647344050482, guid: 2d88daddeefc37048bb375a3cd6e320a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 335
+      value: 330
       objectReference: {fileID: 0}
     - target: {fileID: 5017567647344050482, guid: 2d88daddeefc37048bb375a3cd6e320a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -124.86778
+      value: -111.86778
       objectReference: {fileID: 0}
     - target: {fileID: 5017567647344050482, guid: 2d88daddeefc37048bb375a3cd6e320a,
         type: 3}
@@ -210,7 +220,7 @@ PrefabInstance:
     - target: {fileID: 5017567647344050493, guid: 2d88daddeefc37048bb375a3cd6e320a,
         type: 3}
       propertyPath: m_Name
-      value: InactiveModsScrollView (2) Variant
+      value: InactiveModsScrollView (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5017567647528437866, guid: 2d88daddeefc37048bb375a3cd6e320a,
         type: 3}
