@@ -1,152 +1,137 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviour : IModable
 {
-    private InputHandler inputHandler;
-    private Animator anim;
-    private Rigidbody2D rb;
-    private bool jumping;
-    private float movement;
-    private bool shooting;
-    private bool isTurnedRight;
-    private ParticleSystem dirt;
 
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private float jumpImpuls;
-    [SerializeField]
-    private GameObject bulletPrefab;
-    [SerializeField]
-    private Vector3 bulletOffset;
-    
-    private bool prevOnGround = false;
-    
-    void Awake()
-    {
-        inputHandler = new InputHandler();
-        rb = GetComponent<Rigidbody2D>();
+	private float movement;
+	private bool shooting;
+	private bool isTurnedRight;
+	private bool prevOnGround = false;
 
-        isTurnedRight = true;
-        anim = GetComponent<Animator>();
-        dirt = GetComponentInChildren<ParticleSystem>();
-    }
+	[SerializeField]
+	private float speed;
+	[SerializeField]
+	private GameObject bulletPrefab;
+	[SerializeField]
+	private Vector3 bulletOffset;
 
-    private void Start()
-    {
-        ResetToSave();
-    }
+	public InputHandler InputHandler{ get; private set; }
+	public Animator PlayerAnim { get; private set; }
+	public Rigidbody2D PlayerRB { get; private set; }
+	public ParticleSystem DirtParticles { get; private set; }
 
-    void Update()
-    {
-        anim.SetFloat("Movement", Mathf.Max(0.05F, Mathf.Abs(movement * speed)));
-        anim.SetBool("Air", !OnGround());
+	protected override void Awake()
+	{
+		InputHandler = new InputHandler();
 
-        if (prevOnGround != OnGround())
-        {
-            prevOnGround = !prevOnGround;
-            if (!prevOnGround)
-                dirt.Stop(false, ParticleSystemStopBehavior.StopEmitting);
-            else
-                dirt.Play();
-            dirt.Emit(10);
-        }
-        
-        // Move
-        transform.position = new Vector3(transform.position.x + movement * speed * Time.deltaTime, transform.position.y, 0);
-        
-        // Jump
-        if (jumping && OnGround())
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpImpuls);
-            anim.SetTrigger("Jump");
-            dirt.Emit(10);
-        }
+		isTurnedRight = true;
+		PlayerRB = GetComponent<Rigidbody2D>();
+		PlayerAnim = GetComponent<Animator>();
+		DirtParticles = GetComponentInChildren<ParticleSystem>();
 
-        if (transform.position.y < -10)
-            ResetToSave();
-    }
+		base.Awake();
+	}
 
-    void Shoot(InputAction.CallbackContext cc)
-    {
-        // Single shoots
-        Instantiate(bulletPrefab, transform.position + bulletOffset, transform.rotation);
-    }
-    
-    void Turn()
-    {
-        bulletOffset = new Vector3(-bulletOffset.x, bulletOffset.y, 0);
-        isTurnedRight = !isTurnedRight;
-    }
+	private void Start()
+	{
+		ResetToSave();
+	}
 
-    void Move(InputAction.CallbackContext cc)
-    {
-        movement = cc.ReadValue<float>();
-        if (movement == 1 && !isTurnedRight)
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            Turn();
-        }
-        if (movement == -1 && isTurnedRight)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            Turn();
-        }
-    }
+	protected override void Update()
+	{
+		PlayerAnim.SetFloat("Movement", Mathf.Max(0.05F, Mathf.Abs(movement * speed)));
+		PlayerAnim.SetBool("Air", !OnGround());
 
-    void Jump(InputAction.CallbackContext cc)
-    {
-        jumping = !jumping;
-    }
+		if (prevOnGround != OnGround())
+		{
+			prevOnGround = !prevOnGround;
+			if (!prevOnGround)
+				DirtParticles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+			else
+				DirtParticles.Play();
+			DirtParticles.Emit(10);
+		}
 
-    bool OnGround()
-    {
-        return rb.velocity.y == 0f;
-    }
+		// Move
+		transform.position = new Vector3(transform.position.x + movement * speed * Time.deltaTime, transform.position.y, 0);
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-            ResetToSave();
-    }
+		if (transform.position.y < -10)
+			ResetToSave();
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.otherCollider.CompareTag("Enemy"))
-            ResetToSave();
-    }
+		base.Update();
+	}
 
-    public void ResetToSave()
-    {
-        rb.position = SavepointManager.Instance.lastSave.transform.position;
-        rb.velocity = Vector2.zero;
-        SavepointManager.Instance.OnReset();
-    }
+	void Shoot(InputAction.CallbackContext cc)
+	{
+		// Single shoots
+		Instantiate(bulletPrefab, transform.position + bulletOffset, transform.rotation);
+	}
 
-    private void OnEnable()
-    {
-        inputHandler.Player.Jump.performed += Jump;
-        inputHandler.Player.Jump.Enable();
+	void Turn()
+	{
+		bulletOffset = new Vector3(-bulletOffset.x, bulletOffset.y, 0);
+		isTurnedRight = !isTurnedRight;
+	}
 
-        inputHandler.Player.Movement.performed += Move;
-        inputHandler.Player.Movement.Enable();
+	void Move(InputAction.CallbackContext cc)
+	{
+		movement = cc.ReadValue<float>();
+		if (movement == 1 && !isTurnedRight)
+		{
+			transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+			Turn();
+		}
+		if (movement == -1 && isTurnedRight)
+		{
+			transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+			Turn();
+		}
+	}
 
-        inputHandler.Player.Shoot.performed += Shoot;
-        inputHandler.Player.Shoot.Enable();
-    }
+	public bool OnGround()
+	{
+		return PlayerRB.velocity.y == 0f;
+	}
 
-    private void OnDisable()
-    {
-        inputHandler.Player.Jump.performed -= Jump;
-        inputHandler.Player.Jump.Disable();
+	public void ResetToSave()
+	{
+		PlayerRB.position = SavepointManager.Instance.lastSave.transform.position;
+		PlayerRB.velocity = Vector2.zero;
+		SavepointManager.Instance.OnReset();
+	}
 
-        inputHandler.Player.Movement.performed -= Move;
-        inputHandler.Player.Movement.Disable();
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.CompareTag("Enemy"))
+			ResetToSave();
+	}
 
-        inputHandler.Player.Shoot.performed -= Shoot;
-        inputHandler.Player.Shoot.Disable();
-    }
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.otherCollider.CompareTag("Enemy"))
+			ResetToSave();
+	}
+
+	protected override void OnEnable()
+	{
+		InputHandler.Player.Movement.performed += Move;
+		InputHandler.Player.Movement.Enable();
+
+		InputHandler.Player.Shoot.performed += Shoot;
+		InputHandler.Player.Shoot.Enable();
+
+		base.OnEnable();
+	}
+
+	protected override void OnDisable()
+	{
+		InputHandler.Player.Movement.performed -= Move;
+		InputHandler.Player.Movement.Disable();
+
+		InputHandler.Player.Shoot.performed -= Shoot;
+		InputHandler.Player.Shoot.Disable();
+
+		base.OnDisable();
+	}
 }

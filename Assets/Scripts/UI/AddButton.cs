@@ -38,12 +38,12 @@ public class AddButton : MonoBehaviour
 
     public void HandleClick()
     {
-        if (scrollList.isActiveList && item.ModDisable())
+        if (scrollList.isActiveList && item.ModDeactivate())
         {
             button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "-";
             scrollList.TryTransferMod(item);
         }
-        else if (!scrollList.isActiveList && item.ModEnable())
+        else if (!scrollList.isActiveList && item.ModActivate())
         {
             button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+";
             scrollList.TryTransferMod(item);
