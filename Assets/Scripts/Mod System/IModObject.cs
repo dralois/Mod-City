@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
 
 [System.Serializable]
 public abstract class IModObject : ScriptableObject
@@ -12,13 +13,15 @@ public abstract class IModObject : ScriptableObject
 	[SerializeField] private IModObject[] _dependencies = { };
 	[SerializeField] private IModObject[] _incompatibles = { };
 
-	public bool IsActivated { get; set; } = false;
-
-	public IModable Modable { get; private set; }
-
+	public Sprite Icon { get => _icon; }
+	public string Name { get => _name; }
+	public string Author { get => _author; }
+	public int Version { get => _version; }
 	public IModObject[] Dependencies { get => _dependencies; }
-
 	public IModObject[] Incompatibles { get => _incompatibles; }
+
+	public bool IsActivated { get; set; } = false;
+	public IModable Modable { get; private set; }
 
 	protected abstract void EnableInternal();
 
