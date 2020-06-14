@@ -569,6 +569,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07eaeb33fc7fedb4bad1cd01fd564971, type: 2}
   - {fileID: 11400000, guid: 25cea04f126907a4588a92f7bdac9d03, type: 2}
   - {fileID: 11400000, guid: 712a265608b71e54cb25ced08822060c, type: 2}
+  - {fileID: 11400000, guid: bf66bfccf9823a74fb63645a589b8485, type: 2}
   isActiveList: 1
   contentPanel: {fileID: 5017567646770881847}
   otherList: {fileID: 0}
