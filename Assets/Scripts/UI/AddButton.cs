@@ -25,7 +25,7 @@ public class AddButton : MonoBehaviour
         item = currentMod;
         item.ModLoad();
         title.text = item.Name;
-        description.text = $"{item.Author} created a mod, but will it work?";
+        description.text = $"{item.Author}";
         version.text = $"Version: {item.Version.ToString()}";
         icon.sprite = item.Icon;
         scrollList = currentScrollList;
