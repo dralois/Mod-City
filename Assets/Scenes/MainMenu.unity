@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 20, y: -108}
-  m_SizeDelta: {x: 300, y: 80}
+  m_AnchoredPosition: {x: 0, y: -106.27}
+  m_SizeDelta: {x: 139.12729, y: 76.540344}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &153466586
 MonoBehaviour:
@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "A Game \nwith Mod support"
+  m_Text: Mod City
 --- !u!222 &153466587
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -730,7 +730,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Team 17 presents:'
+  m_Text: 'Die Modder presents:'
 --- !u!222 &673623900
 CanvasRenderer:
   m_ObjectHideFlags: 0
