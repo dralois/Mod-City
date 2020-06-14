@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 21300000, guid: 1ed95b0894c083641b60fc03c2b59ef6, type: 3}
   _name: Micro Mod
-  _author: Flixabua
+  _author: Makes you tiny but also smaller
   _version: 4
   _requiresRestart: 0
   _dependencies: []
   _incompatibles: []
+  jumpModifier: 10
