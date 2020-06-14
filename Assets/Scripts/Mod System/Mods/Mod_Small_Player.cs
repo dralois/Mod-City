@@ -6,11 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Mod", menuName = "Mods/Smaller Character")]
 public class Mod_Small_Player : IModObject
 {
+	[SerializeField] public float jumpModifier = 10.0f;
+
 	protected override void AwakeInternal()
 	{
 		PlayerBehaviour player = (Modable as PlayerBehaviour);
 		player.transform.localScale = new Vector3(0.05f, 0.05f, 0.5f);
 		player.transform.position += new Vector3(0.0f, 2.0f, 0.0f);
+		player.jumpHeight *= jumpModifier;
 		player.speed -= 3.0f;
 	}
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerBehaviour : IModable
@@ -137,13 +138,13 @@ public class PlayerBehaviour : IModable
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("Enemy"))
+		if (collision.CompareTag("Enemy") || collision.CompareTag("Deathzone"))
 			ResetToSave();
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.otherCollider.CompareTag("Enemy"))
+		if (collision.otherCollider.CompareTag("Enemy") || collision.otherCollider.CompareTag("Deathzone"))
 			ResetToSave();
 	}
 
