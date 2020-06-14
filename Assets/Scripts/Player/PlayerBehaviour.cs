@@ -10,7 +10,7 @@ public class PlayerBehaviour : IModable
 	private bool shooting;
 
 	public bool onGround;
-	private float lastOnGround = -100, lastInAir = -100;
+	public float lastOnGround = -100;
 
 	[Range(0, 20)]
 	public float speed = 10;
@@ -34,6 +34,8 @@ public class PlayerBehaviour : IModable
 	public Animator PlayerAnim { get; private set; }
 	public Rigidbody2D PlayerRB { get; private set; }
 	public ParticleSystem DirtParticles { get; private set; }
+
+    public AudioSource stepSound;
 
 	protected override void AwakeInternal()
 	{
@@ -62,7 +64,7 @@ public class PlayerBehaviour : IModable
 		//if (transform.position.y < -10)
 		//ResetToSave();
 
-		bool onGround = Physics2D.Raycast(new Vector2(PlayerRB.position.x + 0.25F * 0.15F, PlayerRB.position.y + 0.74F * 0.15F), Vector2.down, 0.05F);
+		bool onGround = Physics2D.Raycast(new Vector2(PlayerRB.position.x + 0.25F * transform.localScale.x, PlayerRB.position.y + 0.74F * transform.localScale.y), Vector2.down, 0.05F);
 
 		if (onGround != this.onGround)
 		{
@@ -97,6 +99,7 @@ public class PlayerBehaviour : IModable
 			Turn();
 		}
 
+        stepSound.volume = Mathf.Abs(movement) * (onGround ? 0.5F : 0);
 		float jump = 0;
 		if (Time.time - lastOnGround < coyote && jumped)
 		{
@@ -116,7 +119,7 @@ public class PlayerBehaviour : IModable
 		PlayerAnim.SetFloat("Movement", Mathf.Max(0.05F, Mathf.Abs(movement * speed)));
 	}
 
-	void Shoot(InputAction.CallbackContext cc)
+	public void Shoot()
 	{
 		// Single shoots
 		Instantiate(bulletPrefab, transform.position + bulletOffset, transform.rotation);
@@ -169,18 +172,12 @@ public class PlayerBehaviour : IModable
 	{
 		InputHandler.Player.Movement.performed += Move;
 		InputHandler.Player.Movement.Enable();
-
-		InputHandler.Player.Shoot.performed += Shoot;
-		InputHandler.Player.Shoot.Enable();
 	}
 
 	protected override void OnDisableInternal()
 	{
 		InputHandler.Player.Movement.performed -= Move;
 		InputHandler.Player.Movement.Disable();
-
-		InputHandler.Player.Shoot.performed -= Shoot;
-		InputHandler.Player.Shoot.Disable();
 	}
 
 	protected override void OnDestroyInternal()
