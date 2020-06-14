@@ -1468,7 +1468,7 @@ MonoBehaviour:
     defaultState: 1
   noise:
     overrideState: 1
-    value: 0
+    value: 0.4
   glitch:
     overrideState: 1
     value: 0
