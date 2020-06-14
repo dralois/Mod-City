@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "New Mod", menuName = "Mods/Jump Mod")]
-public class Mod_Jump : IModObject
+[CreateAssetMenu(fileName = "New Mod", menuName = "Mods/Double Jump Mod")]
+public class Mod_DoubleJump : IModObject
 {
+    private bool jumped = false;
+
 	protected override void AwakeInternal()
 	{
 	}
@@ -12,18 +14,13 @@ public class Mod_Jump : IModObject
 	{
 		(Modable as PlayerBehaviour).InputHandler.Player.Jump.performed += Jump;
 		(Modable as PlayerBehaviour).InputHandler.Player.Jump.Enable();
+        jumped = false;
 	}
 
 	protected override void UpdateInternal()
 	{
-		/*
-if (jumping && (Modable as PlayerBehaviour).OnGround())
-{
-	(Modable as PlayerBehaviour).PlayerRB.velocity =
-		new Vector2((Modable as PlayerBehaviour).PlayerRB.velocity.x, jumpImpulse);
-	(Modable as PlayerBehaviour).PlayerAnim.SetTrigger("Jump");
-	(Modable as PlayerBehaviour).DirtParticles.Emit(10);
-}*/
+        if ((Modable as PlayerBehaviour).onGround)
+            jumped = false;
 	}
 
 	protected override void OnDisableInternal()
@@ -38,6 +35,11 @@ if (jumping && (Modable as PlayerBehaviour).OnGround())
 
 	void Jump(InputAction.CallbackContext cc)
 	{
-		(Modable as PlayerBehaviour).jumped = true;
-	}
+        if (!jumped && !(Modable as PlayerBehaviour).onGround)
+        {
+            jumped = true;
+            (Modable as PlayerBehaviour).lastOnGround = Time.time;
+            (Modable as PlayerBehaviour).jumped = true;
+        }
+    }
 }

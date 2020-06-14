@@ -39,7 +39,7 @@ public class Collectable : MonoBehaviour
 
     private void OnCollected()
     {
-
+        GetComponent<AudioSource>().Play();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
