@@ -38,15 +38,25 @@ public class AddButton : MonoBehaviour
 
     public void HandleClick()
     {
-        if (scrollList.isActiveList && item.ModDeactivate())
+        if (scrollList.isActiveList)
         {
-            button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "-";
-            scrollList.TryTransferMod(item);
+            if (item.ModDeactivate())
+            {
+                button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "-";
+                scrollList.TryTransferMod(item);
+            }
+            else
+                scrollList.WarnIncompatible();
         }
-        else if (!scrollList.isActiveList && item.ModActivate())
+        else if (!scrollList.isActiveList)
         {
-            button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+";
-            scrollList.TryTransferMod(item);
+            if (item.ModActivate())
+            {
+                button.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "+";
+                scrollList.TryTransferMod(item);
+            }
+            else
+                scrollList.WarnIncompatible();
         }
     }
 }
