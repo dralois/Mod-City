@@ -6,31 +6,31 @@ public class PlayerBehaviour : IModable
 	private float movement, movementVal;
 	private bool shooting;
 
-    public bool onGround;
-    private float lastOnGround = -100, lastInAir = -100;
+	public bool onGround;
+	private float lastOnGround = -100, lastInAir = -100;
 
-    [Range(0, 20)]
-    public float speed = 10;
-    private float jumpForce;
-    public float jumpHeight, jumpTime;
-    public float movementSmoothAcc = 50;
-    public float coyote;
+	[Range(0, 20)]
+	public float speed = 10;
+	private float jumpForce;
+	public float jumpHeight, jumpTime;
+	public float movementSmoothAcc = 50;
+	public float coyote;
 
-    private Vector2 vel;
-    private bool isTurnedRight = true;
-    public bool jumped;
+	private Vector2 vel;
+	private bool isTurnedRight = true;
+	public bool jumped;
 
 	[SerializeField]
 	private GameObject bulletPrefab;
 	[SerializeField]
 	private Vector3 bulletOffset;
 
-	public InputHandler InputHandler{ get; private set; }
+	public InputHandler InputHandler { get; private set; }
 	public Animator PlayerAnim { get; private set; }
 	public Rigidbody2D PlayerRB { get; private set; }
 	public ParticleSystem DirtParticles { get; private set; }
 
-	protected override void Awake()
+	protected override void AwakeInternal()
 	{
 		InputHandler = new InputHandler();
 
@@ -38,82 +38,79 @@ public class PlayerBehaviour : IModable
 		PlayerAnim = GetComponent<Animator>();
 		DirtParticles = GetComponentInChildren<ParticleSystem>();
 
-        base.Awake();
+		jumpForce = 4F * jumpHeight / jumpTime;
+		Physics2D.gravity = Vector2.down * jumpForce * 2F / jumpTime;
+	}
 
-        jumpForce = 4F * jumpHeight / jumpTime;
-        Physics2D.gravity = Vector2.down * jumpForce * 2F / jumpTime;
-    }
-
-    private void Start()
+	private void Start()
 	{
 		ResetToSave();
 	}
 
-	protected override void Update()
+	protected override void UpdateInternal()
 	{
-		base.Update();
 	}
 
-    void FixedUpdate()
-    {
-        //if (transform.position.y < -10)
-            //ResetToSave();
+	void FixedUpdate()
+	{
+		//if (transform.position.y < -10)
+		//ResetToSave();
 
-        bool onGround = Physics2D.Raycast(new Vector2(PlayerRB.position.x + 0.25F * 0.15F, PlayerRB.position.y + 0.74F * 0.15F), Vector2.down, 0.05F);
+		bool onGround = Physics2D.Raycast(new Vector2(PlayerRB.position.x + 0.25F * 0.15F, PlayerRB.position.y + 0.74F * 0.15F), Vector2.down, 0.05F);
 
-        if (onGround != this.onGround)
-        {
-            this.onGround = onGround;
-            if (!onGround)
-                DirtParticles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
-            else
-                DirtParticles.Play();
-            DirtParticles.Emit(10);
-        }
+		if (onGround != this.onGround)
+		{
+			this.onGround = onGround;
+			if (!onGround)
+				DirtParticles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+			else
+				DirtParticles.Play();
+			DirtParticles.Emit(10);
+		}
 
-        if (onGround)
-        {
-            vel.y = 0;
-            lastOnGround = Time.time;
-        }
+		if (onGround)
+		{
+			vel.y = 0;
+			lastOnGround = Time.time;
+		}
 
-        if (Mathf.Abs(movementVal) > 0.1F)
-            movement = Mathf.Lerp(movement, movementVal, movementSmoothAcc * Time.fixedDeltaTime);
-        else
-            movement = movementVal;
-        vel.x = movement * speed;
+		if (Mathf.Abs(movementVal) > 0.1F)
+			movement = Mathf.Lerp(movement, movementVal, movementSmoothAcc * Time.fixedDeltaTime);
+		else
+			movement = movementVal;
+		vel.x = movement * speed;
 
-        if (movement >= 0.1F && !isTurnedRight)
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            Turn();
-        }
-        if (movement <= -0.1F && isTurnedRight)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            Turn();
-        }
+		if (movement >= 0.1F && !isTurnedRight)
+		{
+			transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+			Turn();
+		}
+		if (movement <= -0.1F && isTurnedRight)
+		{
+			transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+			Turn();
+		}
 
-        float jump = 0;
-        if (Time.time - lastOnGround < coyote && jumped)
-        {
-            lastOnGround = -100;
-            jump = jumpForce;
+		float jump = 0;
+		if (Time.time - lastOnGround < coyote && jumped)
+		{
+			lastOnGround = -100;
+			jump = jumpForce;
 
-            PlayerAnim.SetTrigger("Jump");
-            DirtParticles.Emit(10);
-        }
-        jumped = false;
-        vel += new Vector2(0, jump);
-        vel += Physics2D.gravity * Time.fixedDeltaTime;
-        if (vel.y < 0)
-            vel += Physics2D.gravity * 0.2F * Time.fixedDeltaTime;
-        PlayerRB.velocity = vel;
-        PlayerAnim.SetBool("Air", !onGround);
-        PlayerAnim.SetFloat("Movement", Mathf.Max(0.05F, Mathf.Abs(movement * speed)));
-    }
+			PlayerAnim.SetTrigger("Jump");
+			DirtParticles.Emit(10);
+		}
+		jumped = false;
+		vel += new Vector2(0, jump);
+		vel += Physics2D.gravity * Time.fixedDeltaTime;
+		if (vel.y < 0)
+			vel += Physics2D.gravity * 0.2F * Time.fixedDeltaTime;
+		PlayerRB.velocity = vel;
+		PlayerAnim.SetBool("Air", !onGround);
+		PlayerAnim.SetFloat("Movement", Mathf.Max(0.05F, Mathf.Abs(movement * speed)));
+	}
 
-    void Shoot(InputAction.CallbackContext cc)
+	void Shoot(InputAction.CallbackContext cc)
 	{
 		// Single shoots
 		Instantiate(bulletPrefab, transform.position + bulletOffset, transform.rotation);
@@ -134,7 +131,7 @@ public class PlayerBehaviour : IModable
 	{
 		PlayerRB.position = SavepointManager.Instance.lastSave.transform.position + Vector3.up * 0.75F;
 		PlayerRB.velocity = vel = Vector2.zero;
-        movement = 0;
+		movement = 0;
 		SavepointManager.Instance.OnReset();
 	}
 
@@ -150,25 +147,25 @@ public class PlayerBehaviour : IModable
 			ResetToSave();
 	}
 
-	protected override void OnEnable()
+	protected override void OnEnableInternal()
 	{
 		InputHandler.Player.Movement.performed += Move;
 		InputHandler.Player.Movement.Enable();
 
 		InputHandler.Player.Shoot.performed += Shoot;
 		InputHandler.Player.Shoot.Enable();
-
-		base.OnEnable();
 	}
 
-	protected override void OnDisable()
+	protected override void OnDisableInternal()
 	{
 		InputHandler.Player.Movement.performed -= Move;
 		InputHandler.Player.Movement.Disable();
 
 		InputHandler.Player.Shoot.performed -= Shoot;
 		InputHandler.Player.Shoot.Disable();
+	}
 
-		base.OnDisable();
+	protected override void OnDestroyInternal()
+	{
 	}
 }

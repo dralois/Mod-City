@@ -109,6 +109,7 @@ public abstract class IModObject : ScriptableObject
 		if (IsLoaded && IsActivated)
 		{
 			DestroyInternal();
+			Modable = null;
 		}
 	}
 

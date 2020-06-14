@@ -5,40 +5,51 @@ public abstract class IModable : MonoBehaviour
 
 	[SerializeField] protected IModObject[] _mods = { };
 
-	protected virtual void Awake()
+	protected abstract void AwakeInternal();
+	protected abstract void OnEnableInternal();
+	protected abstract void UpdateInternal();
+	protected abstract void OnDisableInternal();
+	protected abstract void OnDestroyInternal();
+
+	private void Awake()
 	{
+		AwakeInternal();
 		foreach (var mod in _mods)
 		{
 			mod.ModAwake(this);
 		}
 	}
 
-	protected virtual void OnEnable()
+	private void OnEnable()
 	{
+		OnEnableInternal();
 		foreach (var mod in _mods)
 		{
 			mod.ModOnEnable();
 		}
 	}
 
-	protected virtual void Update()
+	private void Update()
 	{
+		UpdateInternal();
 		foreach (var mod in _mods)
 		{
 			mod.ModUpdate();
 		}
 	}
 
-	protected virtual void OnDisable()
+	private void OnDisable()
 	{
+		OnDisableInternal();
 		foreach (var mod in _mods)
 		{
 			mod.ModOnDisable();
 		}
 	}
 
-	protected virtual void OnDestroy()
+	private void OnDestroy()
 	{
+		OnDestroyInternal();
 		foreach (var mod in _mods)
 		{
 			mod.ModDestroy();
