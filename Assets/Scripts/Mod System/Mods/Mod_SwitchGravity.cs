@@ -10,12 +10,10 @@ public class Mod_SwitchGravity : IModObject
 
 	protected override void OnEnableInternal()
 	{
-		// (Modable as PlayerBehaviour).InputHandler.Player.Jump.performed += Jump;
-		// (Modable as PlayerBehaviour).InputHandler.Player.Jump.Enable();
-		(Modable as PlayerBehaviour).gameObject.GetComponent<Rigidbody2D>().gravityScale *= -1;
-	}
+        (Modable as PlayerBehaviour).jumpForce *= 5;
+    }
 
-	protected override void UpdateInternal()
+    protected override void UpdateInternal()
 	{
 		/*
 if (jumping && (Modable as PlayerBehaviour).OnGround())
@@ -31,7 +29,6 @@ if (jumping && (Modable as PlayerBehaviour).OnGround())
 	{
 		// (Modable as PlayerBehaviour).InputHandler.Player.Jump.performed -= Jump;
 		// (Modable as PlayerBehaviour).InputHandler.Player.Jump.Disable();
-		(Modable as PlayerBehaviour).gameObject.GetComponent<Rigidbody2D>().gravityScale *= -1;
 	}
 
 	protected override void DestroyInternal()

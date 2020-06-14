@@ -14,7 +14,7 @@ public class PlayerBehaviour : IModable
 
 	[Range(0, 20)]
 	public float speed = 10;
-	private float jumpForce;
+	public float jumpForce;
 	public float jumpHeight, jumpTime;
 	public float movementSmoothAcc = 50;
 	public float coyote;
