@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
-public class WinObject : MonoBehaviour
+public class WinObject : IModable
 {
     public float timeToCollect = 1;
     private Vector3 orgScale, orgPos;
@@ -54,5 +54,26 @@ public class WinObject : MonoBehaviour
             player = collision.transform;
             collectTick = 1;
         }
+    }
+
+    protected override void AwakeInternal()
+    {
+
+    }
+
+    protected override void OnEnableInternal()
+    {
+    }
+
+    protected override void UpdateInternal()
+    {
+    }
+
+    protected override void OnDisableInternal()
+    {
+    }
+
+    protected override void OnDestroyInternal()
+    {
     }
 }
