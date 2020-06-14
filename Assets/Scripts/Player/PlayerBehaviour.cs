@@ -140,7 +140,7 @@ public class PlayerBehaviour : IModable
 	public void ResetToSave()
 	{
 		StartCoroutine(DeathGlitch());
-		PlayerRB.position = SavepointManager.Instance.lastSave.transform.position + Vector3.up * 0.75F;
+		PlayerRB.position = SavepointManager.Instance.savePos + Vector3.up * 0.75F;
 		PlayerRB.velocity = vel = Vector2.zero;
 		movement = 0;
 		SavepointManager.Instance.OnReset();

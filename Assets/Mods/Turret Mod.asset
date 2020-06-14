@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2cef5ef077d9544ead868ebb15ab0ac, type: 3}
-  m_Name: Hendrik Mod
+  m_Script: {fileID: 11500000, guid: aa3c3658e387d1147a102b0daba61b0c, type: 3}
+  m_Name: Turret Mod
   m_EditorClassIdentifier: 
-  _icon: {fileID: 2135870721299893097, guid: 4faca75e439de6b44bcd57f3ffa7fcf5, type: 3}
-  _name: The one and only
-  _author: SGJ
-  _version: 999
+  _icon: {fileID: 4910560966013777683, guid: 11fb09976a52fea47a0083f26b72c582, type: 3}
+  _name: Turrets-
+  _author: A Friend
+  _version: 2
   _requiresRestart: 0
   _dependencies: []
   _incompatibles:
-  - {fileID: 11400000, guid: f4b43028b6032ba488ee3a382d3f8e39, type: 2}
+  - {fileID: 11400000, guid: 25cea04f126907a4588a92f7bdac9d03, type: 2}
