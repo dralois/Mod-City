@@ -9,7 +9,7 @@ public class PlayerTracker : MonoBehaviour
     public bool drawRaysGizmos = true;
     public int numberOfRays = 5;   
     
-    private const float fireRayPeriod = 0.5f;
+    public float fireRayPeriod = 0.5f;
     public Collider2D playerCollider;
 
     private IEnumerator fireRaysCoroutine;

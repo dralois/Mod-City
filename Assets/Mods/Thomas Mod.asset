@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4da1f68c20d2fd4980692bd50103508, type: 3}
-  m_Name: Shooter Mod
+  m_Script: {fileID: 11500000, guid: 51a94776031ff904791e2e1085f85388, type: 3}
+  m_Name: Thomas Mod
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: e82f0c6a7cd212747ae1c511cebeee18, type: 3}
-  _name: Laser Eyes
-  _author: Anonymous
+  _icon: {fileID: 0}
+  _name: Thomas
+  _author: 
   _version: 1
   _requiresRestart: 0
   _dependencies: []
   _incompatibles: []
+  thomas: {fileID: 7760731133873568161, guid: 8c0ce4d1a7bc328428b12fd3463cd901, type: 3}

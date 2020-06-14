@@ -5424,9 +5424,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 11400000, guid: ee95ce37ed187ae458b4c37e7a2479f2, type: 2}
   - {fileID: 11400000, guid: c85c81c0353302a4b9c7be5c1b972446, type: 2}
+  - {fileID: 11400000, guid: f4b43028b6032ba488ee3a382d3f8e39, type: 2}
   - {fileID: 11400000, guid: 12710927a46124d4b823772650acefdc, type: 2}
   - {fileID: 11400000, guid: 07eaeb33fc7fedb4bad1cd01fd564971, type: 2}
   - {fileID: 11400000, guid: bf66bfccf9823a74fb63645a589b8485, type: 2}
+  - {fileID: 11400000, guid: 9b14a5409bb69d94c99261facd24a62f, type: 2}
   onGround: 1
   lastOnGround: -100
   speed: 6
@@ -5437,7 +5439,7 @@ MonoBehaviour:
   jumped: 0
   bulletPrefab: {fileID: 2348499282425956688, guid: a27739c9a86f5a542ac28fba60c34aec,
     type: 3}
-  bulletOffset: {x: 1, y: 2.5, z: 0}
+  bulletOffset: {x: 0.4, y: 1, z: 0}
   stepSound: {fileID: 4140884402603913391}
   jumpSound: {fileID: 4440314887600696396}
 --- !u!114 &3904422172888917992

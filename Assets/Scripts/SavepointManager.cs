@@ -6,10 +6,12 @@ public class SavepointManager : Singleton<SavepointManager>
 {
     public Savepoint inital;
     public Savepoint lastSave;
+    public Vector3 savePos;
 
-    private void Start()
+    private void Awake()
     {
         lastSave = inital;
+        savePos = lastSave.transform.position;
         lastSave.anim.SetBool("active", true);
         lastSave.sys.Play();
 
@@ -18,11 +20,15 @@ public class SavepointManager : Singleton<SavepointManager>
 
     public void Save(Savepoint s)
     {
-        lastSave.anim.SetBool("active", false);
-        lastSave.sys.Stop();
+        if (lastSave != null)
+        {
+            lastSave.anim.SetBool("active", false);
+            lastSave.sys.Stop();
+        }
         s.anim.SetBool("active", true);
         s.sys.Play();
         lastSave = s;
+        savePos = lastSave.transform.position;
     }
 
     public void OnReset()

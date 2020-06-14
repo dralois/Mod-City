@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4da1f68c20d2fd4980692bd50103508, type: 3}
-  m_Name: Shooter Mod
+  m_Script: {fileID: 11500000, guid: aa3c3658e387d1147a102b0daba61b0c, type: 3}
+  m_Name: Turret Mod
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: e82f0c6a7cd212747ae1c511cebeee18, type: 3}
-  _name: Laser Eyes
-  _author: Anonymous
-  _version: 1
+  _icon: {fileID: 4910560966013777683, guid: 11fb09976a52fea47a0083f26b72c582, type: 3}
+  _name: Turrets-
+  _author: A Friend
+  _version: 2
   _requiresRestart: 0
   _dependencies: []
-  _incompatibles: []
+  _incompatibles:
+  - {fileID: 11400000, guid: 25cea04f126907a4588a92f7bdac9d03, type: 2}

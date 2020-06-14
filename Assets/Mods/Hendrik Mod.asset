@@ -18,4 +18,5 @@ MonoBehaviour:
   _version: 999
   _requiresRestart: 0
   _dependencies: []
-  _incompatibles: []
+  _incompatibles:
+  - {fileID: 11400000, guid: f4b43028b6032ba488ee3a382d3f8e39, type: 2}
