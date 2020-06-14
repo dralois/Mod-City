@@ -119,7 +119,7 @@ public class PlayerBehaviour : IModable
 		PlayerAnim.SetFloat("Movement", Mathf.Max(0.05F, Mathf.Abs(movement * speed)));
 	}
 
-	void Shoot(InputAction.CallbackContext cc)
+	public void Shoot()
 	{
 		// Single shoots
 		Instantiate(bulletPrefab, transform.position + bulletOffset, transform.rotation);
@@ -172,18 +172,12 @@ public class PlayerBehaviour : IModable
 	{
 		InputHandler.Player.Movement.performed += Move;
 		InputHandler.Player.Movement.Enable();
-
-		InputHandler.Player.Shoot.performed += Shoot;
-		InputHandler.Player.Shoot.Enable();
 	}
 
 	protected override void OnDisableInternal()
 	{
 		InputHandler.Player.Movement.performed -= Move;
 		InputHandler.Player.Movement.Disable();
-
-		InputHandler.Player.Shoot.performed -= Shoot;
-		InputHandler.Player.Shoot.Disable();
 	}
 
 	protected override void OnDestroyInternal()
