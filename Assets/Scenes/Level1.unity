@@ -3797,7 +3797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToCollect: 1
-  isWinable: 1
+  isWinable: 0
   winSceneName: WinWindow
 --- !u!4 &557161731 stripped
 Transform:
