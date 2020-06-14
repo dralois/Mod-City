@@ -1,6 +1,8 @@
 ﻿using Cinemachine;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerBehaviour : IModable
 {
@@ -26,6 +28,8 @@ public class PlayerBehaviour : IModable
 	[SerializeField]
 	private Vector3 bulletOffset;
 
+	private PostGlitch glitchSettings;
+
 	public InputHandler InputHandler { get; private set; }
 	public Animator PlayerAnim { get; private set; }
 	public Rigidbody2D PlayerRB { get; private set; }
@@ -38,6 +42,7 @@ public class PlayerBehaviour : IModable
 		PlayerRB = GetComponent<Rigidbody2D>();
 		PlayerAnim = GetComponent<Animator>();
 		DirtParticles = GetComponentInChildren<ParticleSystem>();
+		glitchSettings = Camera.main.GetComponent<PostProcessVolume>().profile.GetSetting<PostGlitch>();
 
 		jumpForce = 4F * jumpHeight / jumpTime;
 		Physics2D.gravity = Vector2.down * jumpForce * 2F / jumpTime;
@@ -130,10 +135,22 @@ public class PlayerBehaviour : IModable
 
 	public void ResetToSave()
 	{
+		StartCoroutine(DeathGlitch());
 		PlayerRB.position = SavepointManager.Instance.lastSave.transform.position + Vector3.up * 0.75F;
 		PlayerRB.velocity = vel = Vector2.zero;
 		movement = 0;
 		SavepointManager.Instance.OnReset();
+	}
+
+	IEnumerator DeathGlitch()
+	{
+		glitchSettings.enabled.value = true;
+		for(int i = 0; i < 15; i++)
+		{
+			glitchSettings.glitch.value =  Mathf.PingPong(15f / i, 0.5f);
+			yield return new WaitForSeconds(0.1f);
+		}
+		glitchSettings.enabled.value = false;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

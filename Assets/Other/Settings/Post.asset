@@ -1375,6 +1375,7 @@ MonoBehaviour:
   - {fileID: -896633837519931006}
   - {fileID: 500556713361438897}
   - {fileID: 4449959430989335513}
+  - {fileID: 7541774377621297006}
 --- !u!114 &500556713361438897
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1445,3 +1446,44 @@ MonoBehaviour:
   fastMode:
     overrideState: 1
     value: 0
+--- !u!114 &7541774377621297006
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a65cb280af0a5a4dbbc8097518742a8, type: 3}
+  m_Name: PostGlitch
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 0
+  glitchTex:
+    overrideState: 1
+    value: {fileID: 2800000, guid: 13d356c2f1e76a442afec9932ab87f43, type: 3}
+    defaultState: 1
+  noise:
+    overrideState: 1
+    value: 0
+  glitch:
+    overrideState: 1
+    value: 0
+  scale:
+    overrideState: 1
+    value: 1
+  timeScale:
+    overrideState: 1
+    value: 1
+  glitchColor:
+    overrideState: 1
+    value: {r: 1, g: 0, b: 0, a: 1}
+  colorSplitX:
+    overrideState: 1
+    value: 0.5
+  colorSplitY:
+    overrideState: 1
+    value: 0.2
