@@ -30,7 +30,7 @@ public class Collectable : MonoBehaviour
             if (collectTick <= 0)
             {
                 OnCollected();
-                Destroy(gameObject);
+                Destroy(gameObject, 0.5F);
             }
         }
         else
