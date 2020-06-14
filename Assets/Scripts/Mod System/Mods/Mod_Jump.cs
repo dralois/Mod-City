@@ -20,13 +20,14 @@ public class Mod_Jump : IModObject
 
 	protected override void UpdateInternal()
 	{
+        /*
 		if (jumping && (Modable as PlayerBehaviour).OnGround())
 		{
 			(Modable as PlayerBehaviour).PlayerRB.velocity =
 				new Vector2((Modable as PlayerBehaviour).PlayerRB.velocity.x, jumpImpulse);
 			(Modable as PlayerBehaviour).PlayerAnim.SetTrigger("Jump");
 			(Modable as PlayerBehaviour).DirtParticles.Emit(10);
-		}
+		}*/
 	}
 
 	protected override void OnDisableInternal()
@@ -41,7 +42,6 @@ public class Mod_Jump : IModObject
 
 	void Jump(InputAction.CallbackContext cc)
 	{
-		jumping = !jumping;
-	}
-
+        (Modable as PlayerBehaviour).jumped = true;
+    }
 }

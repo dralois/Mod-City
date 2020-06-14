@@ -3,14 +3,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerBehaviour : IModable
 {
-
-	private float movement;
+	private float movement, movementVal;
 	private bool shooting;
-	private bool isTurnedRight;
-	private bool prevOnGround = false;
 
-	[SerializeField]
-	private float speed;
+    public bool onGround;
+    private float lastOnGround = -100, lastInAir = -100;
+
+    [Range(0, 20)]
+    public float speed = 10;
+    private float jumpForce;
+    public float jumpHeight, jumpTime;
+    public float movementSmoothAcc = 50;
+    public float coyote;
+
+    private Vector2 vel;
+    private bool isTurnedRight = true;
+    public bool jumped;
+
 	[SerializeField]
 	private GameObject bulletPrefab;
 	[SerializeField]
@@ -25,44 +34,86 @@ public class PlayerBehaviour : IModable
 	{
 		InputHandler = new InputHandler();
 
-		isTurnedRight = true;
 		PlayerRB = GetComponent<Rigidbody2D>();
 		PlayerAnim = GetComponent<Animator>();
 		DirtParticles = GetComponentInChildren<ParticleSystem>();
 
-		base.Awake();
-	}
+        base.Awake();
 
-	private void Start()
+        jumpForce = 4F * jumpHeight / jumpTime;
+        Physics2D.gravity = Vector2.down * jumpForce * 2F / jumpTime;
+    }
+
+    private void Start()
 	{
 		ResetToSave();
 	}
 
 	protected override void Update()
 	{
-		PlayerAnim.SetFloat("Movement", Mathf.Max(0.05F, Mathf.Abs(movement * speed)));
-		PlayerAnim.SetBool("Air", !OnGround());
-
-		if (prevOnGround != OnGround())
-		{
-			prevOnGround = !prevOnGround;
-			if (!prevOnGround)
-				DirtParticles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
-			else
-				DirtParticles.Play();
-			DirtParticles.Emit(10);
-		}
-
-		// Move
-		transform.position = new Vector3(transform.position.x + movement * speed * Time.deltaTime, transform.position.y, 0);
-
-		if (transform.position.y < -10)
-			ResetToSave();
-
 		base.Update();
 	}
 
-	void Shoot(InputAction.CallbackContext cc)
+    void FixedUpdate()
+    {
+        //if (transform.position.y < -10)
+            //ResetToSave();
+
+        bool onGround = Physics2D.Raycast(new Vector2(PlayerRB.position.x + 0.25F * 0.15F, PlayerRB.position.y + 0.74F * 0.15F), Vector2.down, 0.05F);
+
+        if (onGround != this.onGround)
+        {
+            this.onGround = onGround;
+            if (!onGround)
+                DirtParticles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+            else
+                DirtParticles.Play();
+            DirtParticles.Emit(10);
+        }
+
+        if (onGround)
+        {
+            vel.y = 0;
+            lastOnGround = Time.time;
+        }
+
+        if (Mathf.Abs(movementVal) > 0.1F)
+            movement = Mathf.Lerp(movement, movementVal, movementSmoothAcc * Time.fixedDeltaTime);
+        else
+            movement = movementVal;
+        vel.x = movement * speed;
+
+        if (movement >= 0.1F && !isTurnedRight)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            Turn();
+        }
+        if (movement <= -0.1F && isTurnedRight)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            Turn();
+        }
+
+        float jump = 0;
+        if (Time.time - lastOnGround < coyote && jumped)
+        {
+            lastOnGround = -100;
+            jump = jumpForce;
+
+            PlayerAnim.SetTrigger("Jump");
+            DirtParticles.Emit(10);
+        }
+        jumped = false;
+        vel += new Vector2(0, jump);
+        vel += Physics2D.gravity * Time.fixedDeltaTime;
+        if (vel.y < 0)
+            vel += Physics2D.gravity * 0.2F * Time.fixedDeltaTime;
+        PlayerRB.velocity = vel;
+        PlayerAnim.SetBool("Air", !onGround);
+        PlayerAnim.SetFloat("Movement", Mathf.Max(0.05F, Mathf.Abs(movement * speed)));
+    }
+
+    void Shoot(InputAction.CallbackContext cc)
 	{
 		// Single shoots
 		Instantiate(bulletPrefab, transform.position + bulletOffset, transform.rotation);
@@ -76,28 +127,14 @@ public class PlayerBehaviour : IModable
 
 	void Move(InputAction.CallbackContext cc)
 	{
-		movement = cc.ReadValue<float>();
-		if (movement == 1 && !isTurnedRight)
-		{
-			transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-			Turn();
-		}
-		if (movement == -1 && isTurnedRight)
-		{
-			transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-			Turn();
-		}
-	}
-
-	public bool OnGround()
-	{
-		return PlayerRB.velocity.y == 0f;
+		movementVal = cc.ReadValue<float>();
 	}
 
 	public void ResetToSave()
 	{
-		PlayerRB.position = SavepointManager.Instance.lastSave.transform.position;
-		PlayerRB.velocity = Vector2.zero;
+		PlayerRB.position = SavepointManager.Instance.lastSave.transform.position + Vector3.up * 0.75F;
+		PlayerRB.velocity = vel = Vector2.zero;
+        movement = 0;
 		SavepointManager.Instance.OnReset();
 	}
 

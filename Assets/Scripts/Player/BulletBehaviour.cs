@@ -16,12 +16,16 @@ public class BulletBehaviour : MonoBehaviour
     {
         lifetime -= Time.deltaTime;
         if (lifetime < 0)
+        {
             Destroy(gameObject);
+        }
         else
+        {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Instantiate(hitPrefab, gameObject.transform.position, Quaternion.identity);
         Destroy(gameObject);
