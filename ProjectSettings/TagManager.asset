@@ -9,6 +9,7 @@ TagManager:
   - Savepoint
   - Hurdle
   - Deathzone
+  - InitialSave
   layers:
   - Default
   - TransparentFX

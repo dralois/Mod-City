@@ -5,7 +5,7 @@ using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-public class TurretController : MonoBehaviour
+public class TurretController : IModable
 {
     public float viewDistance = 7f;
     public float viewAngle = 30f;
@@ -120,5 +120,25 @@ public class TurretController : MonoBehaviour
         
         GameObject tmpProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.transform.position, Quaternion.LookRotation(gunLine, Vector3.up));
         tmpProjectile.GetComponent<Projectile>().init(gunLine, projectileSpeed);
-    } 
+    }
+
+    protected override void AwakeInternal()
+    {
+    }
+
+    protected override void OnEnableInternal()
+    {
+    }
+
+    protected override void UpdateInternal()
+    {
+    }
+
+    protected override void OnDisableInternal()
+    {
+    }
+
+    protected override void OnDestroyInternal()
+    {
+    }
 }

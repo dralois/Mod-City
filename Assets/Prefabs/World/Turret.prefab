@@ -341,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawRaysGizmos: 1
   numberOfRays: 5
+  fireRayPeriod: 0.5
   playerCollider: {fileID: 0}
   playerIsVisible: 0
   controller: {fileID: 0}
@@ -533,6 +534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be4bc67bc32b2845b3a5b5f30628f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mods:
+  - {fileID: 11400000, guid: 9a557a2d1a7a33642a397e48c585e47a, type: 2}
   viewDistance: 8
   viewAngle: 30
   rotationSpeed: 2
