@@ -16,6 +16,7 @@ public abstract class IModable : MonoBehaviour
 		AwakeInternal();
 		foreach (var mod in _mods)
 		{
+			Debug.Log(this);
 			mod.ModAwake(this);
 		}
 	}
