@@ -4,18 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MainMenuManager : MonoBehaviour
+public class MainMenuManager : IModable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject BOSD;
 
     public void AddModUI()
     {
@@ -34,10 +25,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadLevelByNameAndSave(string levelName)
     {
-        // do stuff here
-
         SceneManager.LoadScene(levelName);
     }
+
     public void CloseGame()
     {
         Application.Quit();
@@ -46,5 +36,25 @@ public class MainMenuManager : MonoBehaviour
     public void printHi()
     {
         Debug.Log("Hi");
+    }
+
+    protected override void AwakeInternal()
+    {
+    }
+
+    protected override void OnEnableInternal()
+    {
+    }
+
+    protected override void UpdateInternal()
+    {
+    }
+
+    protected override void OnDisableInternal()
+    {
+    }
+
+    protected override void OnDestroyInternal()
+    {
     }
 }
