@@ -10,7 +10,8 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField]
     private float lifetime;
 
-    public GameObject hitPrefab;
+    [SerializeField]
+    private GameObject hitPrefab;
 
     void Update()
     {
