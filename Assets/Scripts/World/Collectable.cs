@@ -30,7 +30,7 @@ public class Collectable : MonoBehaviour
             if (collectTick <= 0)
             {
                 OnCollected();
-                Destroy(gameObject);
+                Destroy(gameObject, 0.5F);
             }
         }
         else
@@ -39,7 +39,7 @@ public class Collectable : MonoBehaviour
 
     private void OnCollected()
     {
-
+        GetComponent<AudioSource>().Play();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

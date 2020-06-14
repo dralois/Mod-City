@@ -12,6 +12,7 @@ public class Savepoint : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             SavepointManager.Instance.Save(this);
+            GetComponent<AudioSource>().Play();
         }
     }
 }
