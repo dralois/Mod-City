@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 [System.Serializable]
 public class Item
@@ -20,9 +21,12 @@ public class ModScrollList : MonoBehaviour
     public ModScrollList otherList;
     public TMPro.TextMeshProUGUI additionalText;
     public SimpleObjectPool modObjectPool;
+    public Animator anim;
+    private AudioSource audio;
 
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         for (int i = modList.Count - 1; i >= 0; i--)
         {
             if(isActiveList)
@@ -46,12 +50,15 @@ public class ModScrollList : MonoBehaviour
 
     private void AddButtons()
     {
+        audio.Play();
         foreach (var mod in modList)
         {
             if (isActiveList && mod.IsActivated)
             {
                 GameObject newPanel = modObjectPool.GetObject();
                 newPanel.transform.SetParent(contentPanel);
+                newPanel.transform.localScale = Vector3.one * 0.475F;
+                newPanel.transform.position = new Vector3(newPanel.transform.position.x, newPanel.transform.position.y, 0);
 
                 AddButton sampleButton = newPanel.GetComponent<AddButton>();
                 sampleButton.Setup(mod, this);
@@ -60,11 +67,18 @@ public class ModScrollList : MonoBehaviour
             {
                 GameObject newPanel = modObjectPool.GetObject();
                 newPanel.transform.SetParent(contentPanel);
+                newPanel.transform.localScale = Vector3.one * 0.475F;
+                newPanel.transform.position = new Vector3(newPanel.transform.position.x, newPanel.transform.position.y, 0);
 
                 AddButton sampleButton = newPanel.GetComponent<AddButton>();
                 sampleButton.Setup(mod, this);
             }
         }
+    }
+
+    internal void WarnIncompatible()
+    {
+        anim.SetTrigger("Warn");
     }
 
     public void TryTransferMod(IModObject mod)

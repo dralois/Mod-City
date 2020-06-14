@@ -35,7 +35,7 @@ public class PlayerBehaviour : IModable
 	public Rigidbody2D PlayerRB { get; private set; }
 	public ParticleSystem DirtParticles { get; private set; }
 
-    public AudioSource stepSound;
+    public AudioSource stepSound, jumpSound;
 
 	protected override void AwakeInternal()
 	{
@@ -108,6 +108,7 @@ public class PlayerBehaviour : IModable
 
 			PlayerAnim.SetTrigger("Jump");
 			DirtParticles.Emit(10);
+            jumpSound.Play();
 		}
 		jumped = false;
 		vel += new Vector2(0, jump);
