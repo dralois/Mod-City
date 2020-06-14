@@ -28,14 +28,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Cancel",
-                    "type": "Button",
-                    "id": "ab2fb428-305f-4d2e-97c3-c68377dc82cb",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -137,10 +129,26 @@
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "Level",
+            "id": "8d791465-64b4-4d26-9ad5-13713966f016",
+            "actions": [
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "c79f6493-9557-459d-91b7-83d691f471eb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "d4e92ee6-3a7d-4462-b45a-0d690f79d660",
+                    "id": "a1bb9acc-253b-47f8-8d44-45bd1ebe30ec",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",

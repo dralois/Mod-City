@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3b4b4a0428b59f14aa41531f73d6930f
+guid: 609feaeb573c9734bb62663a7809c03c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -41,16 +41,16 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -135,7 +135,11 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-    physicsShape: []
+    physicsShape:
+    - - {x: -312, y: 234}
+      - {x: -313, y: -232}
+      - {x: 317, y: -237}
+      - {x: 316, y: 233}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
@@ -143,10 +147,12 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: b09e54e270ea46c45a72d382e4de4e52, type: 3}
+      name: _NormalMap
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 1
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

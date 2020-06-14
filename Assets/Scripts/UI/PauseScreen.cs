@@ -8,32 +8,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PauseScreen : MonoBehaviour
+public class PauseScreen : IModable
 {
     // Start is called before the first frame update
     public float timepause;
     private bool paused = false;
     public GameObject canvas;
     private InputHandler inputHandler;
-    void Start()
-    {
-        inputHandler = new InputHandler();
-        inputHandler.Player.Cancel.performed += Cancel_performed;
-        inputHandler.Player.Cancel.Enable();
-        canvas.SetActive(false);
-    }
 
-    private void Update()
-    {
-        
-    }
     private void Cancel_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
             Pause();
-
     }
 
-  
+    protected override void Awake()
+    {
+        inputHandler = new InputHandler();
+        inputHandler.Level.Cancel.performed += Cancel_performed;
+        inputHandler.Level.Cancel.Enable();
+        canvas.SetActive(false);
+        base.Awake();
+    }
 
     public void Pause()
     {
