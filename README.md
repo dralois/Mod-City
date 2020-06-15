@@ -1,6 +1,6 @@
 # Overview
-The project _name_, created for _reason_.
+The game "Mod City", created for the "SGJ SS 20" game jam.
 
-This is a small description.
+This is a cyberpunk 2D platformer featuring modding as a game mechanic.
 
-To find out more, please visit the provided project link.
+To find out more, please visit the itch.io project.
